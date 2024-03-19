@@ -20,7 +20,6 @@ import Layout from "../body/Layout";
     },
   };
 const BottomBar = ({ tabScreens }) => {
-  console.log(typeof tabScreens);
   const Tab = createBottomTabNavigator();
   return (
         <Tab.Navigator screenOptions={screenOptions}>

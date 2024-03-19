@@ -1,11 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationContainer } from '@react-navigation/native';
 import StackScreens from './stack';
 import MainScreen, { tabScreens } from './main';
-import Layout from '../layouts/body/Layout';
-import BottomBar from '../layouts/nav/BottomBar';
+import { isLogin } from '../../api/auth/HandleApi';
 
 const MyTheme = {
     dark: false,
@@ -19,14 +18,20 @@ const MyTheme = {
   };
 const Screens = () => {
     const Stack = createNativeStackNavigator();
+    const checkLogin = async() =>{
+        return await isLogin();
+    }
+    useEffect(() => {
+      checkLogin();
+    },[])
     return (
-        <NavigationContainer theme={MyTheme} >
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
-                <Stack.Screen name='Welcome' component={StackScreens}/>
-                <Stack.Screen name='MainScreen' component={MainScreen}/>
-            </Stack.Navigator>
-        </NavigationContainer>
-        
+      
+            <NavigationContainer theme={MyTheme} >
+                <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={checkLogin ? "MainScreen" : "Welcome"}>
+                        <Stack.Screen name='Welcome' component={StackScreens}/>
+                        <Stack.Screen name='MainScreen' component={MainScreen}/>
+                </Stack.Navigator>
+            </NavigationContainer>
     )
 }
 

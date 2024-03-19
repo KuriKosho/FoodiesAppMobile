@@ -5,7 +5,6 @@ import DynamicIcon from "../Icon/DynamicIcon";
 const TabScreen = ({ icon , focused}) => {
     return (
         <View style={styles.tabContainer}>
-            {/* {focused && <View style={styles.focusTab}></View>} */}
             <DynamicIcon 
                 library={icon.library}  
                 color={focused ? "#FF3535" : "black"} 

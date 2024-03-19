@@ -1,11 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import Layout from '../../layouts/body/Layout';
 
 const FavoriteScreen = () => {
   return (
-    <View style= {styles.container}>
+    <Layout>
+      <View style= {styles.container}>
       <Text>FavoriteScreen</Text>
-    </View>
+    </View>  
+    </Layout>
+    
   )
 }
 

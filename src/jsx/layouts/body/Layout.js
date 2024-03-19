@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import {  StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Layout = ({ children }) => {
@@ -9,7 +9,6 @@ const Layout = ({ children }) => {
     </SafeAreaView>
   )
 };
-
 export default Layout;
 
 const styles = StyleSheet.create({

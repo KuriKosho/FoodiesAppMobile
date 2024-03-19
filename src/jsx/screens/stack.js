@@ -8,6 +8,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginAndRegisterScreen from "./StackScreen/LoginAndRegisterScreen";
+import ConfirmOTPScreen from "./StackScreen/ConfirmOTPScreen";
 
 const StackScreens = () => {
     const Stack = createNativeStackNavigator();
@@ -17,6 +18,7 @@ const StackScreens = () => {
             <Stack.Screen name="LoginAndRegisterScreen" component={LoginAndRegisterScreen} />
             <Stack.Screen name="LoginScreen" component={LoginScreen} />
             <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+            <Stack.Screen name="ConfirmOTPScreen" component={ConfirmOTPScreen} />
         </Stack.Navigator>
     )
 }
