@@ -1,8 +1,5 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import AnyScreen from "./src/test/anyscreen";
-import MainScreen from "./src/jsx/screens/main";
-import Screens from "./src/jsx/screens/full";
+import { StyleSheet, View } from "react-native";
+import Screens from "../FoodieApp/screens/full";
 
 export default function App() {
   return (
