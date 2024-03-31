@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { TouchableOpacity } from 'react-native';
 import { logOutHandle } from "../../api/auth/HandleApi"
-import { useCustomNavigation } from '../../utils/method';
+import { useCustomNavigation } from '../../utils/method/useCustomNavigation';
 
 const ProfileScreen = () => {
   const navi = useCustomNavigation();

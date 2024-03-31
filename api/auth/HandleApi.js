@@ -22,3 +22,15 @@ export const logOutHandle = async () => {
     }
     return false;
 }
+export const checkLogin = async( setValue, setLoading) =>{
+  const tokenExists = await isLogin();
+  if (tokenExists) {
+    setValue(true);
+    const token = await AsyncStorage.getItem("token");
+    console.log("Token exists",token);
+  } else {
+    setValue(false);
+    console.log("No exits")
+  }
+  setLoading(false);
+}

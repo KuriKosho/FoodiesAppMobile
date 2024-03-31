@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { useCustomNavigation } from '../../utils/method';
-import ButtonNormal from '../../components/UI/Button/ButtonNormal'
+import { useCustomNavigation } from '../../utils/method/useCustomNavigation';
+import ButtonNormal from '@components/UI/Button/ButtonNormal'
 
 
 

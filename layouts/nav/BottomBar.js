@@ -1,10 +1,7 @@
-import { View, Text } from "react-native";
-import React, { useEffect, useState } from "react";
-import { NavigationContainer } from "@react-navigation/native";
+import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { SafeAreaView } from "react-native-safe-area-context";
 import TabScreen from "../../components/MenuItem/TabScreen";
-import Layout from "../body/Layout";
+import { createStackNavigator } from "@react-navigation/stack";
 
 
   const screenOptions = {
@@ -19,24 +16,58 @@ import Layout from "../body/Layout";
       height: 50,
     },
   };
+
+// Tạo bottom tab navigation
+const Tab = createBottomTabNavigator();
+
+// Hàm tạo Stack Navigator cho mỗi tabScreen
+const createStack = (component, childComponents) => {
+    const Stack = createStackNavigator();
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name={component.name} component={component.component} options={{ headerShown: false }} />
+            {childComponents.map((child, index) => (
+                <Stack.Screen key={index} name={child.childName} component={child.childComponent} options={{ headerShown: false }} />
+            ))}
+        </Stack.Navigator>
+    );
+};
 const BottomBar = ({ tabScreens }) => {
   const Tab = createBottomTabNavigator();
   return (
+        // <Tab.Navigator screenOptions={screenOptions}>
+        //   {tabScreens.map((screen, index) => (
+        //     <Tab.Screen
+        //       key={index}
+        //       name={screen.name}
+        //       component={screen.component}
+        //       options={({route}) => ({
+        //         tabBarIcon: ({focused})=> (
+        //           <TabScreen 
+        //             focused={focused}
+        //             icon={screen.icon}
+        //           /> 
+        //         )
+        //       })}
+        //     />
+        //   ))}
+        // </Tab.Navigator>
         <Tab.Navigator screenOptions={screenOptions}>
           {tabScreens.map((screen, index) => (
             <Tab.Screen
               key={index}
-              name={screen.name}
-              component={screen.component}
+              name={screen.tabName}
               options={({route}) => ({
                 tabBarIcon: ({focused})=> (
                   <TabScreen 
                     focused={focused}
                     icon={screen.icon}
-                  />
+                  /> 
                 )
               })}
-            />
+              >
+                {() => createStack(screen, screen.childComponent)}
+              </Tab.Screen>
           ))}
         </Tab.Navigator>
   )

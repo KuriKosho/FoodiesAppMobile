@@ -1,24 +1,24 @@
 import {  StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Layout from '../../layouts/body/Layout';
 import DynamicIcon from '../../components/UI/Icon/DynamicIcon';
 import ButtonNormal from '../../components/UI/Button/ButtonNormal';
-import { useNavigation } from '@react-navigation/native'
 import OneNumberBox from '../../components/UI/input/oneNumberBox';
+import { useCustomNavigation } from '../../utils/method/useCustomNavigation';
+import { accountContext } from '../../context/AccountContext';
+import { maskEmail } from '../../utils/method/maskEmail';
 
 const ConfirmOTPScreen = () => {
+  const navi = useCustomNavigation();
+  const {email, setEmail} = useContext(accountContext);
     const [number1, setNumber1] = useState('');
     const [number2, setNumber2] = useState('');
     const [number3, setNumber3] = useState('');
     const [number4, setNumber4] = useState('');
     const confirmHandle = () => {
-        
         return true;
     }
-    const navigation = useNavigation();
-    const goToScreen = (name) => {
-        navigation.navigate(name);
-    }
+    const emailMask = maskEmail(email);
   return (
     <Layout>
     <View style={styles.container}>
@@ -42,7 +42,7 @@ const ConfirmOTPScreen = () => {
         <Text style={styles.textBody}>Read the OTP code carefully before filling it out !</Text>
       </View>
       <View style={[styles.containerFixCenter, styles.center]}>
-        <Text style={styles.textConfirm}>Confirm OTP was sent to your email v*****gmail.com </Text>
+        <Text style={styles.textConfirm}>Confirm OTP was sent to your email {emailMask} </Text>
       </View>
      <View style={styles.containerConfirm}>
         <OneNumberBox value={number1} setValue={setNumber1} character={"*"} />

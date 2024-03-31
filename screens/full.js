@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { NavigationContainer } from '@react-navigation/native';
 import StackScreens from './stack';
 import MainScreen from './main';
-import { isLogin } from "../api/auth/HandleApi"
+import { checkLogin, isLogin } from "../api/auth/HandleApi"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const MyTheme = {
@@ -21,20 +21,8 @@ const Screens = () => {
     const Stack = createNativeStackNavigator();
     const [check, setCheck] = useState(false);
     const [isLoading, setLoading] = useState(true);
-    const checkLogin = async() =>{
-        const tokenExists = await isLogin();
-        if (tokenExists) {
-          setCheck(true);
-          const token = await AsyncStorage.getItem("token");
-          console.log("Token exists",token);
-        } else {
-          setCheck(false);
-          console.log("No exits")
-        }
-        setLoading(false);
-    }
     useEffect(() => {
-      checkLogin();
+      checkLogin(setCheck, setLoading);
     },[])
     if (isLoading) {
       return (

@@ -10,7 +10,7 @@ import ggLogo from "../../assets/images/LogoSocialNetwork/ggLogo.png"
 import {isValidUsername } from '../../utils/regex/index';
 import { LoginApi } from '../../api/auth/Auth';
 import { isLogin } from '../../api/auth/HandleApi'
-import { useCustomNavigation } from '../../utils/method/index'
+import { useCustomNavigation } from '../../utils/method/useCustomNavigation';
 
 
 const LoginScreen = () => {

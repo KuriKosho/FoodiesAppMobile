@@ -1,5 +1,5 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View,ScrollView, Alert } from 'react-native'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Layout from "../../layouts/body/Layout"
 import DynamicIcon from '../../components/UI/Icon/DynamicIcon'
 import InputBox from '../../components/UI/input/inputBox'
@@ -7,17 +7,19 @@ import ButtonNormal from '../../components/UI/Button/ButtonNormal'
 import fbLogo from "../../assets/images/LogoSocialNetwork/fbLogo.png"
 import apLogo from "../../assets/images/LogoSocialNetwork/apLogo.png"
 import ggLogo from "../../assets/images/LogoSocialNetwork/ggLogo.png"
-import { createUsername, useCustomNavigation } from '../../utils/method/index'
+import { useCustomNavigation } from '../../utils/method/useCustomNavigation';
 import { isValidEmail, isValidPassword } from '../../utils/regex/index'
 import { SignUpApi } from '../../api/auth/Auth'
 import { isLogin } from '../../api/auth/HandleApi'
+import { accountContext } from '../../context/AccountContext'
 
 
 const RegisterScreen = () => {
   const navi = useCustomNavigation();
   const [firstname, setFirstname] = useState();
   const [lastname, setLastname] = useState();
-  const [email, setEmail] = useState();
+  const [username, setUsername] = useState();
+  const [email, setEmail] = useContext(accountContext);
   const [password, setPassword] = useState();
 
   const checkInfo = () => {
@@ -29,22 +31,16 @@ const RegisterScreen = () => {
   const signUpHandle =  async () => {
     try{
       if (checkInfo()) {
-        const login = await SignUpApi(firstname,lastname,createUsername(firstname,lastname),email,password) 
-        const checkRegi = await isLogin();
-        if (checkRegi){
-          Alert.alert("Register successfully !");
-          navi.goToScreenWithReplace("MainScreen");
-        }
+        const login = await SignUpApi(firstname,lastname,username,email,password) 
+        console.log("Data send: " + login)
+        if (login) {
+          navi.goToScreenWithReplace("ConfirmOTPScreen");
+        } 
       } else {
         Alert.alert("Please check or fill all fields before submitting !")
       }
     } catch(e) {
       console.log("Error: ",e)
-    }
-  }
-  const signUpHandler = () =>{
-    if (checkInfo()){
-      navi.goToScreen("ConfirmOTPScreen");
     }
   }
   return (
@@ -66,44 +62,45 @@ const RegisterScreen = () => {
       <View style={styles.containerStart}>
         <Text style={styles.textHeader}>Welcome to Foodies !</Text>
       </View>
-      <View style={styles.containerStart}>
+      {/* <View style={styles.containerStart}>
         <Text style={styles.textBody}>We are happy to see you . Let's go !</Text>
-      </View>
+      </View> */}
       <ScrollView style={styles.containerScroll}>
         <View style={styles.containerStart}>
           <View style={styles.containerColumns}>
               <InputBox label={"First name"} type={"text"} placeHolder={"John"} value={firstname} setValue={setFirstname}/> 
               <InputBox label={"Last name"} type={"text"} placeHolder={"William"} value={lastname} setValue={setLastname}/> 
+              <InputBox label={"User name"} type={"text"} placeHolder={"yourname123"} value={username} setValue={setUsername}/> 
               <InputBox label={"Email"} type={"email"} placeHolder={"example@gmail.com"} value={email} setValue={setEmail}/> 
               <InputBox label={"Password"} type={"password"} placeHolder={"****"} value={password} setValue={setPassword}/> 
+              
           </View>
         </View>
         <View style={styles.containerFix}>
-        <View style={styles.containerStart}>
-          <ButtonNormal
-            action={() => signUpHandle()}
-            backgroundColor={"#EB4F30"}
-            textColor={"white"}
-            textBold={500}
-            height={50}
-            width={"100%"}
-            letterSpacing={0}
-            radius={16}
-            text={"Create Account"}
-            textSize={16}
-            lineHeight={20}
-          />
+          <View style={styles.containerStart}>
+            <ButtonNormal
+              action={() => signUpHandle()}
+              backgroundColor={"#EB4F30"}
+              textColor={"white"}
+              textBold={500}
+              height={50}
+              width={"100%"}
+              letterSpacing={0}
+              radius={16}
+              text={"Create Account"}
+              textSize={16}
+              lineHeight={20}
+            />
+          </View>
+          <View style={styles.containerCenter}>
+            <Text style={styles.textOr}>OR</Text>
+          </View>
+          <View style={styles.containerCenter}>
+            <Image  source={fbLogo} style={styles.logoSocial}/>
+            <Image  source={ggLogo} style={styles.logoSocial}/>
+            <Image  source={apLogo} style={styles.logoSocial}/>
+          </View>
         </View>
-        <View style={styles.containerCenter}>
-          <Text style={styles.textOr}>OR</Text>
-        </View>
-        <View style={styles.containerCenter}>
-          <Image  source={fbLogo} style={styles.logoSocial}/>
-          <Image  source={ggLogo} style={styles.logoSocial}/>
-          <Image  source={apLogo} style={styles.logoSocial}/>
-        </View>
-        </View>
-        
       </ScrollView>
     </View>
   </Layout>
@@ -129,7 +126,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "column",
     width: "100%",
-    rowGap: 20,
+    rowGap: 5,
     paddingTop: "5%"
   },
   containerScroll: {

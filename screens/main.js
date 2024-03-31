@@ -5,11 +5,23 @@ import SavedScreen from "./MainScreen/SavedScreen";
 import SearchScreen from "./MainScreen/SearchScreen";
 import BottomBar from "../layouts/nav/BottomBar";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ScreenOne from "../test/ScreenOne";
+import ScreenTwo from "../test/ScreenTwo";
+import ScreenThree from "../test/ScreenThree";
+import ScreenFour from "../test/ScreenFour";
+import ScreenFive from "../test/ScreenFive";
 // library, name, size, color
 const tabScreens = [
-    {
+    {   
+        tabName: "tabHome",
         name: "HomeScreen",
         component: HomeScreen,
+            childComponent: [
+            { 
+            childName: "SC1",
+            childComponent: ScreenOne,
+            }
+        ],
         icon: {
             library: "AntDesign",
             name: "home",
@@ -18,8 +30,15 @@ const tabScreens = [
         },
     },
     {
+        tabName: "tabSaved",
         name: "SavedScreen",
         component: SavedScreen,
+            childComponent: [
+            { 
+            childName: "SC2",
+            childComponent: ScreenTwo,
+            }
+        ],
         icon: {
             library: "Ionicons",
             name: "bookmarks-outline",
@@ -28,8 +47,15 @@ const tabScreens = [
         }
     },
     {
+        tabName: "tabFavorite",
         name: "FavoriteScreen",
         component: FavoriteScreen,
+            childComponent: [
+            { 
+            childName: "SC3",
+            childComponent: ScreenThree,
+            }
+        ],
         icon: {
             library: "Ionicons",
             name: "heart-sharp",
@@ -38,8 +64,15 @@ const tabScreens = [
         },
     },
     {
+        tabName: "tabSearch",
         name: "SearchScreen",
         component: SearchScreen,
+            childComponent: [
+            { 
+            childName: "SC4",
+            childComponent: ScreenFour,
+            }
+        ],
         icon: {
             library: "Feather",
             name: "search",
@@ -48,8 +81,15 @@ const tabScreens = [
         }
     },
     {
+        tabName: "tabProfile",
         name: "ProfileScreen",
         component: ProfileScreen,
+        childComponent: [
+            { 
+            childName: "SC5",
+            childComponent: ScreenFive,
+            }
+        ],
         icon: {
             library: "FontAwesome",
             name: "user-o",
@@ -57,6 +97,7 @@ const tabScreens = [
             color: "#000"
         }
     }
+    
 ]
 
 export { HomeScreen, FavoriteScreen, ProfileScreen, SavedScreen, SearchScreen , tabScreens};
@@ -64,11 +105,10 @@ export { HomeScreen, FavoriteScreen, ProfileScreen, SavedScreen, SearchScreen , 
 const MainScreen = () => {
     const Stack = createNativeStackNavigator();
     return (
-        <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="BottomBar">
             <Stack.Screen name="BottomBar">
                 {() => <BottomBar tabScreens={tabScreens}/> }
             </Stack.Screen>
-            
         </Stack.Navigator>
     )
 }
