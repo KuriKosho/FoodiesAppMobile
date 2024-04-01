@@ -30,7 +30,7 @@ export const checkLogin = async( setValue, setLoading) =>{
     console.log("Token exists",token);
   } else {
     setValue(false);
-    console.log("No exits")
+    console.log("No exits !")
   }
   setLoading(false);
 }
