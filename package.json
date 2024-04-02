@@ -31,6 +31,17 @@
   "devDependencies": {
     "@babel/core": "^7.20.0"
   },
+  "assetBundlePatterns": [
+    "**/*"
+  ],
+  "ios": {
+    "supportsTablet": true
+  },
+  "android": {
+    "adaptiveIcon": {
+      "backgroundColor": "#ffffff"
+    }
+  },
   "private": true,
   "react-dotenv": {
     "whitelist": [

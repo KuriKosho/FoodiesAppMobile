@@ -4,7 +4,7 @@ import React from 'react'
 export default function TitleHeader() {
     return (
         <View style={styles.container}>
-            <Text style={styles.titleStyles}>What would you like to cook today?</Text>
+            <Text style={styles.titleStyles} numberOfLines={2}>What would you like to cook today, Chi?</Text>
         </View>
     )
 }
@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
         marginHorizontal: 55,
         width: 250,
         height: 55,
-        marginVertical: 10
+        marginVertical: 20,
+        marginTop: 20
     },
     titleStyles: {
         fontSize: 20,

@@ -85,6 +85,7 @@ export default function Post() {
                 renderItem={({ item }) => (
                     <PostItem
                         {...item}
+
                         image={imageMap[item.image]}
                     />
                 )}

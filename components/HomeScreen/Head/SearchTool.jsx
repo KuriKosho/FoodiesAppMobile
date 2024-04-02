@@ -1,5 +1,6 @@
 import { StyleSheet, TextInput, View, Pressable, Image } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import DynamicIcon from '../../UI/Icon/DynamicIcon'
 
 import React from 'react'
 
@@ -12,19 +13,17 @@ export default function SearchTool() {
                         name="search"
                         size={23}
                         color="black"
+                        style={{ paddingHorizontal: 10 }}
                     />
                     <TextInput
                         style={styles.input}
-                        placeholder="Search"
-                        placeholderTextColor="black"
+                        placeholder="Search recipes..."
+                        placeholderTextColor="#161616"
+
                     />
                 </View>
             </View>
-            <View style={styles.filterContainer}>
-                <Pressable>
-                    <Image style={styles.filterImage} source={require('@/assets/images/user/filter.png')} />
-                </Pressable>
-            </View >
+
 
         </View>
     )
@@ -32,36 +31,30 @@ export default function SearchTool() {
 
 const styles = StyleSheet.create({
     container: {
-        marginHorizontal: 35,
+        marginHorizontal: 15,
         flexDirection: 'row',
-        justifyContent: "space-between"
+        justifyContent: "space-between",
 
     },
     containerSearch: {
         alignItems: "center",
         flexDirection: "row",
+        paddingHorizontal: 10
+
 
     },
     click: {
-        height: 45,
+        height: 40,
         flexDirection: "row",
-        backgroundColor: "#ff8284",
+        backgroundColor: "#ccb0b0",
         borderRadius: 15,
         alignItems: "center",
         justifyContent: "space-evenly",
     },
     input: {
-        fontSize: 20,
+        fontSize: 15,
         marginLeft: 10,
-        width: "80%",
+        width: "90%",
     },
-    filterContainer: {
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    filterImage: {
 
-
-    }
 })
