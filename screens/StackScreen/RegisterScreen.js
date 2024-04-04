@@ -1,17 +1,16 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View,ScrollView, Alert } from 'react-native'
-import React, { useContext, useState } from 'react'
-import Layout from "../../layouts/body/Layout"
-import DynamicIcon from '../../components/UI/Icon/DynamicIcon'
-import InputBox from '../../components/UI/input/inputBox'
-import ButtonNormal from '../../components/UI/Button/ButtonNormal'
-import fbLogo from "../../assets/images/LogoSocialNetwork/fbLogo.png"
-import apLogo from "../../assets/images/LogoSocialNetwork/apLogo.png"
-import ggLogo from "../../assets/images/LogoSocialNetwork/ggLogo.png"
+import { Image, StyleSheet, Text, TouchableOpacity, View,ScrollView, Alert } from 'react-native';
+import React, { useContext, useState } from 'react';
+import Layout from "../../layouts/body/Layout";
+import DynamicIcon from '../../components/UI/Icon/DynamicIcon';
+import InputBox from '../../components/UI/input/inputBox';
+import ButtonNormal from '../../components/UI/Button/ButtonNormal';
+import fbLogo from "../../assets/images/LogoSocialNetwork/fbLogo.png";
+import apLogo from "../../assets/images/LogoSocialNetwork/apLogo.png";
+import ggLogo from "../../assets/images/LogoSocialNetwork/ggLogo.png";
 import { useCustomNavigation } from '../../utils/method/useCustomNavigation';
-import { isValidEmail, isValidPassword } from '../../utils/regex/index'
-import { SignUpApi } from '../../api/auth/Auth'
-import { isLogin } from '../../api/auth/HandleApi'
-import { accountContext } from '../../context/AccountContext'
+import { isValidEmail, isValidPassword } from '../../utils/regex/index';
+import { SignUpApi } from '../../api/auth/Auth';
+import { accountContext } from '../../context/AccountContext';
 
 
 const RegisterScreen = () => {
@@ -19,7 +18,7 @@ const RegisterScreen = () => {
   const [firstname, setFirstname] = useState();
   const [lastname, setLastname] = useState();
   const [username, setUsername] = useState();
-  const [email, setEmail] = useContext(accountContext);
+  const {email, setEmail} = useContext(accountContext);
   const [password, setPassword] = useState();
 
   const checkInfo = () => {

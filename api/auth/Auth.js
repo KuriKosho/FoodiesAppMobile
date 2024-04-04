@@ -9,6 +9,7 @@ const API_REGISTER_URL = "/api/v1/register";
 const API_VERIFY_URL = "/api/v1/verify-account";
 
 export const LoginApi = async(username, password) => {
+  let checkLogin = false;
   try {
     console.log("Username : ", username, "Password : ", password);
     username = FormatText(username);
@@ -24,15 +25,18 @@ export const LoginApi = async(username, password) => {
     })
     if (result.status === 200) {
       if (result.data.login===true) {
+        checkLogin = true;
         const token = result.data.token ;
         AsyncStorage.setItem("token", token);
-      }
+      } else 
       Alert.alert(result.data.message);
     }
   } catch (error) {
     console.error('Login failed:', error);
+    checkLogin(false);
     Alert.alert('Login Failed', 'Please check your username and password');
   }
+  return checkLogin;
 }
 
 export const SignUpApi = async(firstname, lastname , username,email, password) => {

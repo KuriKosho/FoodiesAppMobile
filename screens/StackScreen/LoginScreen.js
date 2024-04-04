@@ -17,20 +17,23 @@ const LoginScreen = () => {
   const navi = useCustomNavigation()
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
+  const [loading, setLoading] = useState(false);
   const loginHandle = async () => {
     try{
+      setLoading(true);
       if (isValidUsername(username)) {
         console.log("Valid Username ");
         const loginData = await LoginApi(username, password);
-        const isLoginBool = await isLogin();
-        if (isLoginBool) {
+        if (loginData==true) {
           Alert.alert("Login successfully !");
+          setLoading(false);
           navi.goToScreenWithReplace("MainScreen");
         }
       } else {
         Alert.alert("Please fill all the fields");
       }
     } catch(e){
+      setLoading(true);
       console.error("Error in system !")
     }
   }
@@ -98,6 +101,7 @@ const LoginScreen = () => {
           </TouchableOpacity>
         </View>
       </View>
+      {/* {loading ?? <Lo} */}
     </Layout>
   )
 }

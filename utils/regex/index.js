@@ -15,9 +15,13 @@ export function isValidUsername(username) {
 }
 
 export function isValidPassword(password) {
-    if (password && password.length >=4){
-        return true;
-    } else {
-        return false;
-    }
+    if (password!=undefined) {
+        if (password && password.length >=4){
+            return true;
+        } else {
+            return false;
+        }
+    } 
+    return false;
+    
 }

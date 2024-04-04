@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FlatList, Image, Dimensions, View, StyleSheet } from 'react-native';
-import { SliderBox } from 'react-native-image-slider-box'
+import Swiper from 'react-native-swiper'
 
 const { width } = Dimensions.get('window');
 const images = [
@@ -12,7 +12,20 @@ const images = [
 const Banner = () => {
     return (
         <View style={styles.bannerContainer}>
-            <SliderBox images={images} sliderBoxHeight='100%' autoplay circleLoop />
+            <Swiper loop={true}
+                    autoplay={true}
+                    autoplayTimeout={2}>
+                {images.map((image, index) => {
+                    return (
+                        <View key={index} style={styles.slide}>
+                            <Image
+                                source={image}
+                                style={{ width: width, height: 100 }}
+                            />
+                        </View>
+                    )
+                })}
+            </Swiper>
         </View>
     );
 };
@@ -25,7 +38,12 @@ const styles = StyleSheet.create({
         height: 100,
         borderRadius: 15,
         overflow: 'hidden',
-
     },
+    slide: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#9DD6EB',
+      },
 
 })
