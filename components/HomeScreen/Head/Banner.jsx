@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { FlatList, Image, Dimensions, View, StyleSheet } from 'react-native';
-import Swiper from 'react-native-swiper'
+import React from 'react';
+import { Image, Dimensions, View, StyleSheet } from 'react-native';
+import Swiper from 'react-native-swiper';
 
 const { width } = Dimensions.get('window');
 const images = [
@@ -12,25 +12,27 @@ const images = [
 const Banner = () => {
     return (
         <View style={styles.bannerContainer}>
-            <Swiper loop={true}
-                    autoplay={true}
-                    autoplayTimeout={2}>
-                {images.map((image, index) => {
-                    return (
-                        <View key={index} style={styles.slide}>
-                            <Image
-                                source={image}
-                                style={{ width: width, height: 100 }}
-                            />
-                        </View>
-                    )
-                })}
+            <Swiper
+                loop={true}
+                autoplay={true}
+                autoplayTimeout={2}
+                paginationStyle={styles.pagination} // Add this line
+            >
+                {images.map((image, index) => (
+                    <View key={index} >
+                        <Image
+                            source={image}
+                            style={{ width: width, height: 100 }}
+                        />
+                    </View>
+                ))}
             </Swiper>
         </View>
     );
 };
 
 export default Banner;
+
 const styles = StyleSheet.create({
     bannerContainer: {
         marginHorizontal: 15,
@@ -39,11 +41,13 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         overflow: 'hidden',
     },
-    slide: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#9DD6EB',
-      },
-
-})
+    // slide: {
+    //     flex: 1,
+    //     justifyContent: 'center',
+    //     alignItems: 'center',
+    //     backgroundColor: '#9DD6EB',
+    // },
+    pagination: {
+        bottom: 10,
+    },
+});

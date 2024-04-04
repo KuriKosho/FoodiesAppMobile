@@ -1,5 +1,5 @@
-import { StyleSheet, View } from "react-native";
-import Screens from "../FoodieApp/screens/full";
+import { StyleSheet, Text, View } from "react-native";
+import Screens from "@/screens/full";
 
 export default function App() {
   return (

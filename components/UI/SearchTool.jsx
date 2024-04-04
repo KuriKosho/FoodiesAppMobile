@@ -1,13 +1,13 @@
 import { StyleSheet, TextInput, View, Pressable, Image } from "react-native";
 import { Feather } from "@expo/vector-icons";
-import DynamicIcon from '../../UI/Icon/DynamicIcon'
+import DynamicIcon from './Icon/DynamicIcon'
 
 import React from 'react'
 
-export default function SearchTool() {
+export default function SearchTool({ style }) {
     return (
-        <View style={styles.container}>
-            <View style={styles.containerSearch}>
+        <View style={[styles.container]}>
+            <View style={[styles.containerSearch, style]}>
                 <View style={styles.click}>
                     <Feather
                         name="search"
@@ -19,7 +19,6 @@ export default function SearchTool() {
                         style={styles.input}
                         placeholder="Search recipes..."
                         placeholderTextColor="#161616"
-
                     />
                 </View>
             </View>
@@ -31,7 +30,7 @@ export default function SearchTool() {
 
 const styles = StyleSheet.create({
     container: {
-        marginHorizontal: 15,
+        marginHorizontal: 10,
         flexDirection: 'row',
         justifyContent: "space-between",
 
