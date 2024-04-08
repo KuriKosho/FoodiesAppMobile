@@ -1,13 +1,12 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-icons';
 import React from 'react'
-import DynamicIcon from '@/components/UI/Icon/DynamicIcon';
 
 export default function ItemProduct({ title, vote, time, level, image }) {
 
     return (
-        <View style={styles.container}>
-            <View  >
+        <TouchableOpacity style={styles.container}>
+            <View>
                 <Image source={image} style={styles.imgStyles} />
             </View>
             <View style={styles.titleContainer}>
@@ -29,7 +28,7 @@ export default function ItemProduct({ title, vote, time, level, image }) {
                     <Text>{level}</Text>
                 </View>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
