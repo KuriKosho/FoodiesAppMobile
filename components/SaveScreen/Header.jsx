@@ -2,6 +2,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import Category from '@/components/UI/Category';
 import React from 'react';
 import SearchTool from '@/components/UI/SearchTool';
+import ButtonNormal from '../UI/Button/ButtonNormal';
+import ButtonCategory from '../UI/Button/ButtonCategory';
 
 export default function Header() {
     return (
@@ -19,6 +21,6 @@ const styles = StyleSheet.create({
     },
     search: {
         width: '100%'
+    },
 
-    }
 });

@@ -49,6 +49,7 @@ export default ButtonNormal;
 
 const styles = StyleSheet.create({
   defaultStyle: {
+    minWidth: 75,
     textAlign: "center",
     alignItems: "center",
     justifyContent: "center",

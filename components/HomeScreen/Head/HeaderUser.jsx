@@ -1,7 +1,6 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-import TitleHeader from './TitleHeader'
 
 export default function HeaderUser({ nameUser }) {
     return (
@@ -15,7 +14,6 @@ export default function HeaderUser({ nameUser }) {
                     <Text style={styles.nameStyles} >{nameUser}</Text>
                 </View>
             </View>
-            {/* <TitleHeader /> */}
             <View style={styles.filterContainer} >
                 <Pressable
                     android_ripple={{ color: '#ccc' }}
