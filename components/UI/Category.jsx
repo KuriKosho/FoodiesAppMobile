@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 import React from 'react'
 
-export default function Ingredients({ title, showAll, style }) {
+export default function Category({ title, showAll, style }) {
     return (
         <View style={styles.container}>
             <View >
