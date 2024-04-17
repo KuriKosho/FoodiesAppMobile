@@ -11,15 +11,19 @@ import { useCustomNavigation } from '../../utils/method/useCustomNavigation';
 import { isValidEmail, isValidPassword } from '../../utils/regex/index';
 import { SignUpApi } from '../../api/auth/Auth';
 import { accountContext } from '../../context/AccountContext';
+import Loader from '@/components/UI/Loading/Loader';
+import ToastNotification from '@/components/UI/Toast/ToastNotification';
+import showToast from '@/utils/method/showToast';
 
 
 const RegisterScreen = () => {
   const navi = useCustomNavigation();
-  const [firstname, setFirstname] = useState();
-  const [lastname, setLastname] = useState();
-  const [username, setUsername] = useState();
+  const {firstname, setFirstname} = useContext(accountContext);
+  const {lastname, setLastname} = useContext(accountContext);
+  const {username, setUsername} = useContext(accountContext);
   const {email, setEmail} = useContext(accountContext);
-  const [password, setPassword] = useState();
+  const {password, setPassword} = useContext(accountContext);
+  const [loading, setLoading] = useState(false);
 
   const checkInfo = () => {
     if (isValidPassword(password) && isValidEmail(email)){
@@ -29,21 +33,26 @@ const RegisterScreen = () => {
   }
   const signUpHandle =  async () => {
     try{
+      setLoading(true);
       if (checkInfo()) {
-        const login = await SignUpApi(firstname,lastname,username,email,password) 
-        console.log("Data send: " + login)
+        const login = await SignUpApi(firstname,lastname,username,email,password);
         if (login) {
+          setLoading(false);
+          showToast("Register successfully, now confirm OTP to continue !")
           navi.goToScreenWithReplace("ConfirmOTPScreen");
         } 
       } else {
+        setLoading(false);
         Alert.alert("Please check or fill all fields before submitting !")
       }
     } catch(e) {
+      setLoading(false);
       console.log("Error: ",e)
     }
   }
   return (
     <Layout>
+    {loading ? <Loader/> : null}
     <View style={styles.container} >
       <View style={styles.containerStart}>
         <TouchableOpacity onPress={()=> navi.goToScreen("LoginAndRegisterScreen")}> 
@@ -61,9 +70,6 @@ const RegisterScreen = () => {
       <View style={styles.containerStart}>
         <Text style={styles.textHeader}>Welcome to Foodies !</Text>
       </View>
-      {/* <View style={styles.containerStart}>
-        <Text style={styles.textBody}>We are happy to see you . Let's go !</Text>
-      </View> */}
       <ScrollView style={styles.containerScroll}>
         <View style={styles.containerStart}>
           <View style={styles.containerColumns}>
@@ -72,7 +78,6 @@ const RegisterScreen = () => {
               <InputBox label={"User name"} type={"text"} placeHolder={"yourname123"} value={username} setValue={setUsername}/> 
               <InputBox label={"Email"} type={"email"} placeHolder={"example@gmail.com"} value={email} setValue={setEmail}/> 
               <InputBox label={"Password"} type={"password"} placeHolder={"****"} value={password} setValue={setPassword}/> 
-              
           </View>
         </View>
         <View style={styles.containerFix}>
