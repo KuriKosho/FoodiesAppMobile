@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 import React from 'react'
 
-export default function Ingredients({ title, showAll }) {
+export default function Category({ title, showAll, style }) {
     return (
         <View style={styles.container}>
             <View >
-                <Text style={styles.textStyles}>{title}</Text>
+                <Text style={[styles.textStyles, style]}>{title}</Text>
             </View>
             <View >
                 <Pressable android_ripple={{ color: '#ccc' }}
@@ -13,7 +13,7 @@ export default function Ingredients({ title, showAll }) {
                         styles.pressedContainer,
                         { opacity: pressed ? 0.5 : 1 },
                     ]}>
-                    <Text style={styles.show}>{showAll}</Text>
+                    <Text style={[styles.show, style]}>{showAll}</Text>
                 </Pressable>
             </View>
         </View>

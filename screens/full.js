@@ -8,37 +8,37 @@ import { checkLogin, isLogin } from "../api/auth/HandleApi"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const MyTheme = {
-    dark: false,
-    colors: {
-      primary: "#DED0B6",
-      background: "#fff",
-      card: "#fff",
-      text: "#F8FAE5",
-      notification: "rgb(255, 69, 58)",
-    },
-  };
+  dark: false,
+  colors: {
+    primary: "#DED0B6",
+    background: "#fff",
+    card: "#fff",
+    text: "#F8FAE5",
+    notification: "rgb(255, 69, 58)",
+  },
+};
 const Screens = () => {
-    const Stack = createNativeStackNavigator();
-    const [check, setCheck] = useState(false);
-    const [isLoading, setLoading] = useState(true);
-    useEffect(() => {
-      checkLogin(setCheck, setLoading);
-    },[])
-    if (isLoading) {
-      return (
-        <View style={styles.container}>
-          <Text>Loading...</Text>
-        </View>
-      );
-    } 
+  const Stack = createNativeStackNavigator();
+  const [check, setCheck] = useState(false);
+  const [isLoading, setLoading] = useState(true);
+  useEffect(() => {
+    checkLogin(setCheck, setLoading);
+  }, [])
+  if (isLoading) {
     return (
-            <NavigationContainer theme={MyTheme} >
-                <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={(check) ? "MainScreen" : "Welcome"}>
-                        <Stack.Screen name='Welcome' component={StackScreens}/>
-                        <Stack.Screen name='MainScreen' component={MainScreen}/>
-                </Stack.Navigator>
-            </NavigationContainer>
-    )
+      <View style={styles.container}>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
+  return (
+    <NavigationContainer theme={MyTheme} >
+      <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={(check) ? "MainScreen" : "Welcome"}>
+        {/* <Stack.Screen name='Welcome' component={StackScreens}/> */}
+        <Stack.Screen name='MainScreen' component={MainScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
 
 export default Screens

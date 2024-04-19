@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native'
 import React from 'react'
-import Category from '../Ingredient/Category'
+import Category from '../../UI/Category'
 import PostItem from './PostItem';
 
 

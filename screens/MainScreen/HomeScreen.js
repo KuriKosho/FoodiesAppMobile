@@ -3,10 +3,10 @@ import React from 'react'
 import { useCustomNavigation } from '../../utils/method/useCustomNavigation'
 import Layout from "../../layouts/body/Layout"
 import HeaderUser from '@/components/HomeScreen/Head/HeaderUser';
-import SearchTool from '@/components/HomeScreen/Head/SearchTool';
+import SearchTool from '@/components/UI/SearchTool';
 import Trending from '@/components/HomeScreen/Head/Trending';
 import ListProduct from '@/components/HomeScreen/Products/ListProduct';
-import Ingredients from '@/components/HomeScreen/Ingredient/Category';
+import Ingredients from '@/components/UI/Category';
 import ListItemSingle from '@/components/HomeScreen/Ingredient/ListItemSingle';
 import Banner from '@/components/HomeScreen/Head/Banner';
 import Post from '@/components/HomeScreen/Post/Post';
@@ -53,7 +53,7 @@ const HomeScreen = () => {
     //   </TouchableOpacity>
     // </View>
     <Layout>
-      <SafeArea/>
+      <SafeArea />
     </Layout>
   )
 }
@@ -61,10 +61,11 @@ const HomeScreen = () => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+
+  },
 })
