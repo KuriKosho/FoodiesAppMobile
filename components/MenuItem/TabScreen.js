@@ -13,19 +13,19 @@ const TabScreen = ({ icon, focused }) => {
         </View>
     )
 }
-const styles = StyleSheet.create({
-    tabContainer: {
-        alignItems: "center",
-        justifyContent: "center",
-        position: "relative",
-    },
-    focusTab: {
-        width: 60,
-        height: 2,
-        borderRadius: 100,
-        backgroundColor: "#FF3535",
-        position: "absolute",
-        top: -11,
-    },
-});
+    const styles = StyleSheet.create({
+        tabContainer: {
+            alignItems: "center",
+            justifyContent: "center",
+            position: "relative",
+        },
+        focusTab: {
+            width: 60,
+            height: 2,
+            borderRadius: 100,
+            backgroundColor: "#FF3535",
+            position: "absolute",
+            top: -11,
+        },
+    });
 export default TabScreen;

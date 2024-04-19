@@ -3,7 +3,6 @@ import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Entypo, AntDesign, Ionicons } from '@expo/vector-icons';
 
 export default function PostItem({ name, content, timeOnl, avatar, image, like, share, save }) {
-    // console.log(timeOnl)
     const [likesCount, setLikesCount] = useState(parseInt(like));
     const [savesCount, setSavesCount] = useState(parseInt(save));
     const [sharesCount, setSharesCount] = useState(parseInt(share));

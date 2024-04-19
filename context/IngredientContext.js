@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from 'react'
 
-export const accountContext = createContext();
-const AccountContext = ({children}) => {
+export const ingredientContext = createContext();
+const IngredientContext = ({children}) => {
     const [isLogin, setIsLogin] = useState(false);
     const [email, setEmail] = useState("");
     const [firstname, setFirstname] =useState("");
@@ -17,6 +17,4 @@ const AccountContext = ({children}) => {
     )
 }
 
-export const useLogin = () => useContext(accountContext);
-
-export default AccountContext;
+export default IngredientContext;

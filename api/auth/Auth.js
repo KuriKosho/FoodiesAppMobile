@@ -11,7 +11,7 @@ const API_VERIFY_URL = "/api/v1/verify-account";
 export const LoginApi = async(username, password) => {
   let checkLogin = false;
   try {
-    console.log("Username : ", username, "Password : ", password);
+    console.log("Username : ", username, "-Password : ", password);
     username = FormatText(username);
     const result = await managerApi(API_LOGIN_URL, {
       headers: {
@@ -62,10 +62,13 @@ export const SignUpApi = async(firstname, lastname , username,email, password) =
     })
     if (result.status === 200) {
       if (result.data) {
-        checkSignUp = true;
-        AsyncStorage.setItem("email",result.data.email)
+        if (result.data.register!=null || result.data.register != undefined){
+          checkSignUp = result.data.register; 
+          AsyncStorage.setItem("email",result.data.email)
+        } else {
+          Alert.alert(result.data.message)
+        }
       }
-      Alert.alert(result.data.message);
     }
   } catch (error) {
     console.error('Register failed:', error);
@@ -75,8 +78,10 @@ export const SignUpApi = async(firstname, lastname , username,email, password) =
   return checkSignUp;
 }
 
-const verifyAcccount = async(email, otp)=>{
+export const verifyAcccount = async(email, otp)=>{
+  let checkVerify = false;
   email = FormatText(email);
+  console.log("Email: ",email,"| Otp: ",otp)
   try{
     let params = "?email=" + email + "&otp=" + otp ;
     const result = await managerApi(API_VERIFY_URL+params, {
@@ -86,12 +91,20 @@ const verifyAcccount = async(email, otp)=>{
       method: "PUT"
     })
     if (result.status===200) {
-      const token = result.data.token ; 
-      AsyncStorage.setItem("token", token);
-      Alert.alert(result.data.message);
+      if (result.data) {
+        if (result.data.verify!=null || result.data.verify != undefined){
+          console.log(result.data)
+          checkVerify = result.data.verify; 
+          const token = result.data.token ; 
+          AsyncStorage.setItem("token", token);
+        } else {
+          Alert.alert(result.data.message)
+        }
+      }
     }
   } catch (e) {
     console.log(e);
     Alert.alert('Verify Account Failed', 'Please check your otp');
   }
+  return checkVerify;
 }

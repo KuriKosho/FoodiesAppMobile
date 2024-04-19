@@ -1,4 +1,4 @@
-import {  StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import {  Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useContext, useEffect, useState } from 'react'
 import Layout from '../../layouts/body/Layout';
 import DynamicIcon from '../../components/UI/Icon/DynamicIcon';
@@ -7,23 +7,39 @@ import OneNumberBox from '../../components/UI/input/oneNumberBox';
 import { useCustomNavigation } from '../../utils/method/useCustomNavigation';
 import { accountContext } from '../../context/AccountContext';
 import { maskEmail } from '../../utils/method/maskEmail';
-
+import {verifyAcccount} from "../../api/auth/Auth"
+import showToast from '@/utils/method/showToast';
+import Loader from '@/components/UI/Loading/Loader';
 const ConfirmOTPScreen = () => {
   const navi = useCustomNavigation();
-  const {email, setEmail} = useContext(accountContext);
+  const {email} = useContext(accountContext);
     const [number1, setNumber1] = useState('');
     const [number2, setNumber2] = useState('');
     const [number3, setNumber3] = useState('');
     const [number4, setNumber4] = useState('');
-    const confirmHandle = () => {
-        return true;
+    const [loading, setLoading] = useState(false);
+    const confirmHandle = async () => {
+      try {
+        setLoading(true);
+        let otp = (number1+number2+number3+number4).trim();
+        const isVerify = await verifyAcccount(email,otp); 
+        if (isVerify==true) {
+          setLoading(false);
+          showToast("Register successfully !");
+          navi.goToScreenWithReplace("StepScreen");
+        }
+      } catch (e) {
+        Alert.alert("Error in server, please wait a few minutes !")
+      }
+        
     }
     const emailMask = maskEmail(email);
   return (
     <Layout>
+      {loading ? <Loader/> : null}
     <View style={styles.container}>
       <View style={styles.containerStart}>
-        <TouchableOpacity onPress={()=> goToScreen("RegisterScreen")}>
+        <TouchableOpacity onPress={()=> navi.goToScreen("RegisterScreen")}>
           <DynamicIcon 
             library={"AntDesign"}
             color={"black"}

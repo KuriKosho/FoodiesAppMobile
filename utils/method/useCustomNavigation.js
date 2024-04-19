@@ -10,3 +10,4 @@ export function useCustomNavigation() {
     }
     return {goToScreen, goToScreenWithReplace}    
 }
+

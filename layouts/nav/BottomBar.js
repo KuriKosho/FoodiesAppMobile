@@ -31,27 +31,10 @@ const createStack = (component, childComponents) => {
             ))}
         </Stack.Navigator>
     );
-};
+};  
 const BottomBar = ({ tabScreens }) => {
   const Tab = createBottomTabNavigator();
   return (
-        // <Tab.Navigator screenOptions={screenOptions}>
-        //   {tabScreens.map((screen, index) => (
-        //     <Tab.Screen
-        //       key={index}
-        //       name={screen.name}
-        //       component={screen.component}
-        //       options={({route}) => ({
-        //         tabBarIcon: ({focused})=> (
-        //           <TabScreen 
-        //             focused={focused}
-        //             icon={screen.icon}
-        //           /> 
-        //         )
-        //       })}
-        //     />
-        //   ))}
-        // </Tab.Navigator>
         <Tab.Navigator screenOptions={screenOptions}>
           {tabScreens.map((screen, index) => (
             <Tab.Screen
