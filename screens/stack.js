@@ -2,14 +2,13 @@ import IntroScreen from "./StackScreen/IntroScreen";
 import LoginScreen from "./StackScreen/LoginScreen";
 import RegisterScreen from "./StackScreen/RegisterScreen";
 
-export {IntroScreen, LoginScreen, RegisterScreen} ;
-
 import { StyleSheet } from 'react-native'
 import React from 'react'
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginAndRegisterScreen from "./StackScreen/LoginAndRegisterScreen";
 import ConfirmOTPScreen from "./StackScreen/ConfirmOTPScreen";
 import AccountContext from "../context/AccountContext";
+import StepScreen from "./StackScreen/StepScreen";
 
 const StackScreens = () => {
     const Stack = createNativeStackNavigator();
@@ -21,6 +20,7 @@ const StackScreens = () => {
                 <Stack.Screen name="LoginScreen" component={LoginScreen} />
                 <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
                 <Stack.Screen name="ConfirmOTPScreen" component={ConfirmOTPScreen} />
+                <Stack.Screen name="StepScreen" component={StepScreen} />
             </Stack.Navigator>
         </AccountContext>
        

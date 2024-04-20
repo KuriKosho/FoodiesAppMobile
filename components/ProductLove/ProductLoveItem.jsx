@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         backgroundColor: '#E4E9F2',
         position: "relative",
-        marginBottom: 20
+        marginBottom: 20,
     },
     imgStyles: {
         padding: 10,

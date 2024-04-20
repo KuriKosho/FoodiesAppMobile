@@ -107,7 +107,7 @@ export const startUpData = [
   {
     id: 2,
     order: 2,
-    typeL: "food-allergies",
+    type: "food-allergies",
     question: "Do you have any food allergies ?",
     description: "We want to know more about your allergies to customise the recommend recipes for you.",
     list: [
@@ -189,12 +189,30 @@ export const startUpData = [
         imgUrl: null,
         name: "Walnuts"
       },
+      {
+        id: 14,
+        order:14,
+        imgUrl:null,
+        name:"mobile"
+      },
+      {
+        id: 15,
+        order:15,
+        imgUrl:null,
+        name:"mobile"
+      },
+      {
+        id: 16,
+        order:16,
+        imgUrl:null,
+        name:"mobile"
+      }
     ]
   },
   {
     id: 3,
     order: 3,
-    typeL: "recipe",
+    type: "recipe",
     question: "Choose at least recipes you like!",
     description: "Select all that applies",
     list: [

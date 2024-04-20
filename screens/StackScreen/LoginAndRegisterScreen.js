@@ -1,4 +1,4 @@
-import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, Image, ScrollView, StyleSheet, Text, ToastAndroid, View } from 'react-native'
 import React from 'react'
 import Layout from "../../layouts/body/Layout"
 import img1 from "../../assets/images/vectoGirl.png"
@@ -6,6 +6,7 @@ import ButtonNormal from '../../components/UI/Button/ButtonNormal'
 import { useCustomNavigation } from '../../utils/method/useCustomNavigation';
 import HorizontalScroll from '../../components/Scroll/HorizontalScroll';
 import { data } from "../../Data/logoData"
+import showToast from '@/utils/method/showToast'
 
 const LoginAndRegisterScreen = () => {
     const navigation = useCustomNavigation();

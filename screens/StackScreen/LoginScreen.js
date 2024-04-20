@@ -1,5 +1,5 @@
 import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Layout from "../../layouts/body/Layout"
 import DynamicIcon from '../../components/UI/Icon/DynamicIcon'
 import InputBox from '../../components/UI/input/inputBox'
@@ -9,14 +9,16 @@ import apLogo from "../../assets/images/LogoSocialNetwork/apLogo.png"
 import ggLogo from "../../assets/images/LogoSocialNetwork/ggLogo.png"
 import {isValidUsername } from '../../utils/regex/index';
 import { LoginApi } from '../../api/auth/Auth';
-import { isLogin } from '../../api/auth/HandleApi'
 import { useCustomNavigation } from '../../utils/method/useCustomNavigation';
+import Loader from '@/components/UI/Loading/Loader'
+import { accountContext } from '@/context/AccountContext'
+import showToast from '@/utils/method/showToast'
 
 
 const LoginScreen = () => {
   const navi = useCustomNavigation()
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+  const {username, setUsername} = useContext(accountContext);
+  const {password, setPassword} = useContext(accountContext);
   const [loading, setLoading] = useState(false);
   const loginHandle = async () => {
     try{
@@ -25,8 +27,8 @@ const LoginScreen = () => {
         console.log("Valid Username ");
         const loginData = await LoginApi(username, password);
         if (loginData==true) {
-          Alert.alert("Login successfully !");
           setLoading(false);
+          showToast("Login successfully !");
           navi.goToScreenWithReplace("MainScreen");
         }
       } else {
@@ -40,6 +42,7 @@ const LoginScreen = () => {
 
   return (
     <Layout>
+      {loading ? <Loader/> : null}
       <View style={styles.container}>
         <View style={styles.containerStart}>
           <TouchableOpacity onPress={()=> navi.goToScreen("LoginAndRegisterScreen")}>

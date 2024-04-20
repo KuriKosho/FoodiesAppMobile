@@ -3,7 +3,7 @@ import React from 'react'
 
 const ScreenFive = () => {
   return (
-    <View>
+    <View style={{display: "flex", justifyContent:"center", alignItems:'center',}}>
       <Text>ScreenFive</Text>
     </View>
   )

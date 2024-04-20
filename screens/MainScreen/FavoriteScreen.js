@@ -4,15 +4,19 @@ import Layout from "../../layouts/body/Layout"
 import SearchTool from '@/components/UI/SearchTool'
 import ListLoveItems from '@/components/ProductLove/ListLoveItems'
 import Category from '@/components/UI/Category'
+import { useNavigation } from '@react-navigation/core'
 const FavoriteScreen = () => {
+  const navigation = useNavigation();
+
+  const onPressHandler = () => {
+    navigation.navigate("Meal Detail", { mealID: id });
+  };
   return (
-    <Layout>
-      <View style={styles.container}>
-        <Category title={"Favorite recipes"} style={styles.title} />
-        <SearchTool />
-        <ListLoveItems />
-      </View>
-    </Layout>
+    <View style={styles.container}>
+      <Category title={"Favorite recipes"} onPress={onPressHandler} style={styles.title} />
+      <SearchTool />
+      <ListLoveItems />
+    </View>
 
   )
 }

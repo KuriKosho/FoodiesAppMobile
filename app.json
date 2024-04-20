@@ -21,8 +21,7 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/vectoGirl.png",
         "backgroundColor": "#ffffff"
-      },
-      "package": "com.vvthong2k4.foodieapp"
+      }
     },
     "web": {
       "favicon": "./assets/images/vectoGirl.png"
