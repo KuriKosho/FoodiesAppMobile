@@ -2,7 +2,7 @@ import { Image, StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-na
 import React, { useState } from 'react';
 import { AntDesign, EvilIcons, Ionicons } from '@expo/vector-icons';
 
-export default function ItemFoodSave({ image, name, weight, quantity, }) {
+export default function ItemFoodSave({ id, image, name, weight, quantity, deleteItem }) {
     const [numberFood, setNumberFood] = useState(quantity)
     function plusHandler() {
         setNumberFood(prev => prev + 1)
@@ -14,6 +14,7 @@ export default function ItemFoodSave({ image, name, weight, quantity, }) {
         else setNumberFood(prev => prev - 1)
     }
     function deleteHandler() {
+        deleteItem(id)
     }
 
     return (
@@ -31,7 +32,7 @@ export default function ItemFoodSave({ image, name, weight, quantity, }) {
                 </View>
             </View>
             <View style={{ alignItems: "flex-end" }}>
-                <TouchableOpacity  >
+                <TouchableOpacity onPress={deleteHandler}  >
                     <EvilIcons name="trash" size={24} color="#EB4F30" />
                 </TouchableOpacity>
                 <View style={styles.quantityContainer}>

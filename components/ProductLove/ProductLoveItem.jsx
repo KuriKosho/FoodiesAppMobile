@@ -39,12 +39,12 @@ const styles = StyleSheet.create({
     container: {
         borderRadius: 25,
         flex: 1,
-        marginVertical: 10,
         borderColor: "black",
         width: "100%",
         overflow: 'hidden',
         backgroundColor: '#E4E9F2',
-        position: "relative"
+        position: "relative",
+        marginBottom: 20
     },
     imgStyles: {
         padding: 10,

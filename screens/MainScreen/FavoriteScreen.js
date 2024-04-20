@@ -24,11 +24,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '##fff',
     marginHorizontal: 15,
-    marginBottom: 50
+    marginBottom: 50,
+
   },
   title: {
     color: '#cd6163',
     fontWeight: '800',
-    fontSize: 25
+    fontSize: 20,
+    marginTop: 10
   }
 })
