@@ -1,14 +1,25 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-export default function ButtonCategory({ content, style, textStyle }) {
-    const [buttonColor, setButtonColor] = useState('#fff');
+export default function ButtonCategory({ content, style, textStyle, styleTouch, onPress }) {
+    const [isPressed, setIsPressed] = useState(false);
+
+    const handlePressIn = () => {
+        setIsPressed(true);
+    };
+
+    const handlePressOut = () => {
+        setIsPressed(false);
+    };
 
     return (
-        <TouchableOpacity onPress={() => {
-            setButtonColor(buttonColor === '#fff' ? '#F68F91' : "#fff");
-        }}>
-            <View style={[styles.buttonContainer, { backgroundColor: buttonColor }, style]}>
+        <TouchableOpacity
+            style={[styleTouch, isPressed && styles.pressedStyle]} // Apply pressed style conditionally
+            onPress={onPress}
+            onPressIn={handlePressIn} // Handle press in event
+            onPressOut={handlePressOut} // Handle press out event
+        >
+            <View style={[styles.buttonContainer, { padding: 15 }, style]}>
                 <Text style={textStyle}>{content}</Text>
             </View>
         </TouchableOpacity>
@@ -17,14 +28,17 @@ export default function ButtonCategory({ content, style, textStyle }) {
 
 const styles = StyleSheet.create({
     buttonContainer: {
-        height: 43,
-        minWidth: 60,
+        height: 50,
+        minWidth: 50,
         borderRadius: 20,
         borderWidth: 1,
         borderColor: '#F68F91',
-        marginVertical: 20,
         alignItems: 'center',
         justifyContent: 'center',
-        padding: 5,
+    },
+    pressedStyle: {
+        backgroundColor: '#F68F91',
+        borderRadius: 20,
+        overflow: 'hidden'
     },
 });

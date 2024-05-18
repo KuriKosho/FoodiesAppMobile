@@ -13,12 +13,13 @@ const IntroScreen = () => {
     <View style={styles.container}>
       <View style={styles.textContainer}>
         <Text style={styles.text_main}>
-          Foodies{'\n'}App          
+          Foodies{'\n'}App
         </Text>
       </View>
       <ButtonNormal 
           // action={()=>navigation.goToScreen("LoginAndRegisterScreen")}  
-          action={()=>navigation.goToScreen("StepScreen")}  
+          action={()=>navigation.goToScreen("MainScreen")}  
+          // action={()=>navigation.goToScreen("StepScreen")}  
           backgroundColor={"white"}
           textColor={"black"}
           textBold={500}
@@ -38,7 +39,7 @@ export default IntroScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,    
+    flex: 1,
     display: 'flex',
     flexDirection: "column",
     alignItems: "center",
@@ -60,5 +61,5 @@ const styles = StyleSheet.create({
     fontWeight: "900",
     fontSize: 60,
   },
- 
+
 })

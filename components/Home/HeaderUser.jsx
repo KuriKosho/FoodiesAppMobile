@@ -1,5 +1,6 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import Filter from '../UI/Filter'
 
 
 export default function HeaderUser({ nameUser }) {
@@ -14,21 +15,8 @@ export default function HeaderUser({ nameUser }) {
                     <Text style={styles.nameStyles} >{nameUser}</Text>
                 </View>
             </View>
-            <View style={styles.filterContainer} >
-                <Pressable
-                    android_ripple={{ color: '#ccc' }}
-                    style={({ pressed }) => [
-                        styles.pressedContainer,
-                        { opacity: pressed ? 0.5 : 1 },
-                    ]}>
-                    <View style={styles.filterImage} >
-                        <Image
-                            source={require('@/assets/images/homepage/filter.png')}
-                            resizeMode="cover"
-                        />
-                    </View>
-                </Pressable>
-            </View>
+            <Filter />
+
         </View >
     )
 }
@@ -60,23 +48,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold'
     },
-    filterContainer: {
-        width: 35,
-        height: 35,
-        borderRadius: 20,
-        borderColor: 'black',
-        borderWidth: 0.75,
-        backgroundColor: '#fff',
-        overflow: 'hidden',
-        marginRight: 15
-    },
 
-    pressedContainer: {
-        width: "100%",
-        height: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-    }
 
 
 })

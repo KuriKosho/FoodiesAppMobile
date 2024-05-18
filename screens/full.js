@@ -34,7 +34,7 @@ const Screens = () => {
   return (
     <NavigationContainer theme={MyTheme} >
       <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={(check) ? "MainScreen" : "Welcome"}>
-        {/* <Stack.Screen name='Welcome' component={StackScreens}/> */}
+        <Stack.Screen name='Welcome' component={StackScreens} />
         <Stack.Screen name='MainScreen' component={MainScreen} />
       </Stack.Navigator>
     </NavigationContainer>
@@ -50,5 +50,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: 'center',
     justifyContent: 'center',
+
   }
 })

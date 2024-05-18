@@ -2,15 +2,16 @@ import { StyleSheet, View, FlatList } from 'react-native';
 import React from 'react'
 import { useCustomNavigation } from '../../utils/method/useCustomNavigation'
 import Layout from "../../layouts/body/Layout"
-import HeaderUser from '@/components/HomeScreen/Head/HeaderUser';
+import HeaderUser from '@/components/Home/HeaderUser';
 import SearchTool from '@/components/UI/SearchTool';
-import Trending from '@/components/HomeScreen/Head/Trending';
-import ListProduct from '@/components/HomeScreen/Products/ListProduct';
+import Trending from '@/components/Home/Trending';
+import ListProduct from '@/components/Meals/ListMeals';
 import Ingredients from '@/components/UI/Category';
-import ListItemSingle from '@/components/HomeScreen/Ingredient/ListItemSingle';
-import Banner from '@/components/HomeScreen/Head/Banner';
-import Post from '@/components/HomeScreen/Post/Post';
+import ListItemSingle from '@/components/Home/Ingredient/ListItemSingle';
+import Banner from '@/components/Home/Banner';
+import Post from '@/components/Home/Post/Post';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
+import CreatePost from '@/components/UI/CreatePost';
 
 
 function SafeArea() {
@@ -21,6 +22,7 @@ function SafeArea() {
     { key: 'HeaderUser', component: <HeaderUser nameUser={'Hi, Jessica'} /> },
     { key: 'Banner', component: <Banner /> },
     { key: 'SearchTool', component: <SearchTool /> },
+    { key: 'CreatePost', component: <CreatePost />},
     { key: 'Trending', component: <Trending /> },
     { key: 'ListProduct', component: <ListProduct /> },
     { key: 'Ingredients', component: <Ingredients title='Your Ingredients' showAll={'See all'} /> },
@@ -31,7 +33,7 @@ function SafeArea() {
   const renderItem = ({ item }) => <View>{item.component}</View>;
 
   return (
-    <View style={{ flex: 1, paddingBottom: 50 }}>
+    <View style={{ flex: 1, paddingBottom: 50, }}>
       <FlatList
         data={components}
         renderItem={renderItem}
@@ -46,12 +48,6 @@ function SafeArea() {
 const HomeScreen = () => {
   const navi = useCustomNavigation();
   return (
-    // <View style= {styles.container}>
-    //   <Text>HomeScreen</Text>
-    //   <TouchableOpacity onPress={() => navi.goToScreen("SC1")}>
-    //     <Text>Go</Text>
-    //   </TouchableOpacity>
-    // </View>
     <Layout>
       <SafeArea />
     </Layout>
@@ -66,6 +62,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-
+    marginHorizontal: 10,
   },
 })

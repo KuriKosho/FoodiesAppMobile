@@ -1,11 +1,17 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-icons';
-import React from 'react'
+import { useNavigation } from '@react-navigation/native';
 
-export default function ItemProduct({ title, vote, time, level, image }) {
+export default function ItemProduct({ id, title, vote, time, level, image }) {
+    const navigation = useNavigation();
+
+    const onPressHandler = () => {
+        navigation.navigate("Meal Detail", { mealID: id });
+    };
 
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={onPressHandler}>
             <View>
                 <Image source={image} style={styles.imgStyles} />
             </View>
@@ -29,14 +35,14 @@ export default function ItemProduct({ title, vote, time, level, image }) {
                 </View>
             </View>
         </TouchableOpacity>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
     container: {
         borderRadius: 25,
         flex: 1,
-        marginHorizontal: 10,
+        marginHorizontal: 5,
         borderColor: "black",
         height: 230,
         width: 180,
@@ -76,4 +82,4 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: "center"
     }
-})
+});
