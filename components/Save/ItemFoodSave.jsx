@@ -3,18 +3,23 @@ import React, { useState } from 'react';
 import { AntDesign, EvilIcons, Ionicons } from '@expo/vector-icons';
 
 export default function ItemFoodSave({ id, image, name, weight, quantity, deleteItem }) {
-    const [numberFood, setNumberFood] = useState(quantity)
+    const [numberFood, setNumberFood] = useState(quantity);
+
     function plusHandler() {
-        setNumberFood(prev => prev + 1)
+        setNumberFood(prev => prev + 1);
     }
+
     function minusHandler() {
-        if (numberFood <= 0) {
-            deleteHandler()
+        if (numberFood === 0) {
+            deleteHandler();
+        } else {
+            setNumberFood(prev => prev - 1);
         }
-        else setNumberFood(prev => prev - 1)
     }
+
+
     function deleteHandler() {
-        deleteItem(id)
+        deleteItem(id);
     }
 
     return (
@@ -32,7 +37,7 @@ export default function ItemFoodSave({ id, image, name, weight, quantity, delete
                 </View>
             </View>
             <View style={{ alignItems: "flex-end" }}>
-                <TouchableOpacity onPress={deleteHandler}  >
+                <TouchableOpacity onPress={deleteHandler}>
                     <EvilIcons name="trash" size={24} color="#EB4F30" />
                 </TouchableOpacity>
                 <View style={styles.quantityContainer}>
@@ -40,12 +45,12 @@ export default function ItemFoodSave({ id, image, name, weight, quantity, delete
                         <AntDesign name="minus" size={15} color="black" />
                     </TouchableOpacity>
                     <Text style={styles.text}>{numberFood}</Text>
-                    <TouchableOpacity onPress={plusHandler} >
+                    <TouchableOpacity onPress={plusHandler}>
                         <AntDesign name="plus" size={15} color="black" />
                     </TouchableOpacity>
                 </View>
             </View>
-        </View >
+        </View>
     );
 }
 
@@ -57,7 +62,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginRight: 8,
         padding: 15,
-
     },
     containerInner: {
         flexDirection: 'row',
@@ -88,6 +92,5 @@ const styles = StyleSheet.create({
     },
     text: {
         paddingHorizontal: 10,
-
-    }
+    },
 });

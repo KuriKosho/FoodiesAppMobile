@@ -1,5 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { Ionicons } from '@expo/vector-icons';
+import { useCustomNavigation } from '../../utils/method/useCustomNavigation';
+import { logOutHandle } from "@/api/auth/HandleApi"
 
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
@@ -9,10 +11,17 @@ export default function Menu() {
     const NotificationHandler = () => {
         navigation.navigate("Notification");
     };
+    const navi = useCustomNavigation();
 
+    const LogOut = () => {
+        const checkLogout = logOutHandle();
+        if (checkLogout) {
+            navi.goToScreenWithReplace("Welcome")
+        }
+    }
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.containerMenu} >
+            <TouchableOpacity style={styles.containerMenu} onPress={LogOut}>
                 <Ionicons name="menu" size={23} color="#fa8486" />
             </TouchableOpacity>
             <Text style={styles.textStyles}>Account</Text>

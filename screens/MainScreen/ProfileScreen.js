@@ -1,5 +1,4 @@
 import { logOutHandle } from "../../api/auth/HandleApi"
-import { useCustomNavigation } from '../../utils/method/useCustomNavigation';
 import Menu from '@/components/UI/Menu';
 import UserImage from '@/components/Profile/User';
 import Analysis from '@/components/Profile/Analysis';
@@ -9,7 +8,7 @@ import ListProduct from '@/components/Meals/ListMeals';
 import Post from '@/components/Home/Post/Post';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Layout from '@/layouts/body/Layout';
 import Header from '@/components/Header/Header';
 import IconHead from '@/components/UI/Icon/IconHead';
@@ -27,15 +26,15 @@ const ProfileScreen = () => {
   }
 
 
-  // const navi = useCustomNavigation();
   // const [main, setMain] = useState(true);
 
-  // const LogOut = () => {
-  //   const checkLogout = logOutHandle();
-  //   if (checkLogout) {
-  //     navi.goToScreenWithReplace("Welcome")
-  //   }
-  // }
+  const LogOut = () => {
+    const checkLogout = logOutHandle();
+    if (checkLogout) {
+      navi.goToScreenWithReplace("Welcome")
+    }
+  }
+
 
   return (
 
@@ -59,21 +58,23 @@ const ProfileScreen = () => {
     // </Layout>
 
 
-    <View style={styles.container} >
-      <Menu />
-      <UserImage />
-      <Analysis />
-      <View style={styles.buttonContainerOutter} >
-        <ButtonCategory styleTouch={{ flex: 1 }} style={styles.buttonContainer} onPress={EditProfileHandler} content={"Edit Profile"} />
-        <ButtonCategory styleTouch={{ flex: 1 }} style={styles.buttonContainer} content={"My recipes"} />
-      </View>
-      <Category showAll={"All"} />
-      <View style={styles.meal}>
-        <ListProduct />
-      </View>
-      <Category showAll={"All"} />
-      <Post />
-    </View >
+    <View style={styles.containerbackground}>
+      <ScrollView style={styles.container}  >
+        <Menu />
+        <UserImage />
+        <Analysis />
+        <View style={styles.buttonContainerOutter} >
+          <ButtonCategory styleTouch={{ flex: 1 }} style={styles.buttonContainer} onPress={EditProfileHandler} content={"Edit Profile"} />
+          <ButtonCategory styleTouch={{ flex: 1 }} style={styles.buttonContainer} content={"My recipes"} />
+        </View>
+        <Category showAll={"All"} />
+        <View style={styles.meal}>
+          <ListProduct />
+        </View>
+        <Category showAll={"All"} />
+        {/* <Post /> */}
+      </ScrollView >
+    </View>
   )
 }
 
@@ -82,10 +83,14 @@ const ProfileScreen = () => {
 export default ProfileScreen;
 
 const styles = StyleSheet.create({
+  containerbackground: {
+    flex: 1,
+    backgroundColor: "#F7F8F9",
+  },
   container: {
     flex: 1,
     marginTop: 15,
-    marginHorizontal: 10
+    marginHorizontal: 10,
   },
   buttonContainerOutter: {
     gap: 15,

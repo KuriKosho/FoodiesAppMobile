@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-export default function Analysis() {
-    const [followers, setFollowers] = useState(24);
+export default function Analysis({ followers }) {
 
     return (
         <View style={styles.container}>
             <View style={styles.followContainer}>
-                <Text style={styles.TextNum}>{followers}</Text>
+                <Text style={styles.TextNum}>24</Text>
                 <Text style={styles.Text}>FOLLOWERS</Text>
             </View>
             <View style={styles.followContainer}>
