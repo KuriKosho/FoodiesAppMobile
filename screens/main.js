@@ -16,6 +16,10 @@ import MealDetailScreen from "./StackScreen/subScreen/MealDetailScreen";
 import EditProfileScreen from './StackScreen/subScreen/EditProfileCreen';
 import NotificationCreen from './StackScreen/subScreen/NotificationCreen';
 
+import CreatePostScreen from './StackScreen/subScreen/CreatePostScreen';
+import IngredientScreen from './StackScreen/subScreen/IngredientScreen';
+
+
 // library, name, size, color
 const tabScreens = [
     {
@@ -134,7 +138,20 @@ const MainScreen = () => {
                     headerTitleStyle: { fontWeight: '800' },
                 })}
             />
-
+            <Stack.Screen name='Create Post' component={CreatePostScreen}
+                options={() => ({
+                    headerShown: true,
+                    headerTintColor: '#e25c5c',
+                    headerTitleStyle: { fontWeight: '800' },
+                })}
+            />
+            <Stack.Screen name='Ingredient Detail' component={IngredientScreen}
+                options={() => ({
+                    headerShown: true,
+                    headerTintColor: '#e25c5c',
+                    headerTitleStyle: { fontWeight: '800' },
+            })}
+            />
         </Stack.Navigator>
     </>
     );

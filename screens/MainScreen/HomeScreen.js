@@ -11,6 +11,7 @@ import ListItemSingle from '@/components/Home/Ingredient/ListItemSingle';
 import Banner from '@/components/Home/Banner';
 import Post from '@/components/Home/Post/Post';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
+import CreatePost from '@/components/UI/CreatePost';
 
 
 function SafeArea() {
@@ -21,6 +22,7 @@ function SafeArea() {
     { key: 'HeaderUser', component: <HeaderUser nameUser={'Hi, Jessica'} /> },
     { key: 'Banner', component: <Banner /> },
     { key: 'SearchTool', component: <SearchTool /> },
+    { key: 'CreatePost', component: <CreatePost />},
     { key: 'Trending', component: <Trending /> },
     { key: 'ListProduct', component: <ListProduct /> },
     { key: 'Ingredients', component: <Ingredients title='Your Ingredients' showAll={'See all'} /> },
@@ -46,12 +48,6 @@ function SafeArea() {
 const HomeScreen = () => {
   const navi = useCustomNavigation();
   return (
-    // <View style= {styles.container}>
-    //   <Text>HomeScreen</Text>
-    //   <TouchableOpacity onPress={() => navi.goToScreen("SC1")}>
-    //     <Text>Go</Text>
-    //   </TouchableOpacity>
-    // </View>
     <Layout>
       <SafeArea />
     </Layout>
@@ -66,7 +62,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-    marginHorizontal: 10
-
+    marginHorizontal: 10,
   },
 })

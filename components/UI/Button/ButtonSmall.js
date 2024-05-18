@@ -2,8 +2,13 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
 const ButtonSmall = ({text, action, boder}) => {
+  const handleAction = () => {
+    if (action) {
+      action();
+    }
+  }
   return (
-    <TouchableOpacity onPress={() => action()} style={[{flex: 1, height: 40, backgroundColor: boder ? "#fff":"#EB4F30", borderWidth: boder ? 1: 0, borderColor:  "#EB4F30", borderRadius: 50}, styles.container]}>
+    <TouchableOpacity onPress={() => handleAction()} style={[{flex: 1, height: 40, backgroundColor: boder ? "#fff":"#EB4F30", borderWidth: boder ? 1: 0, borderColor:  "#EB4F30", borderRadius: 50}, styles.container]}>
         <Text style={[{color: boder ? "#000" : "#fff"}, styles.textSt]}>{text}</Text>
     </TouchableOpacity>
   )

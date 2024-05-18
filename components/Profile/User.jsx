@@ -140,6 +140,17 @@ export default function UserImage({ onPress }
                     </View>
                 </View>
             ) : (
+
+                // <View style={styles.footerContainer}>
+                //     {/* <Pressable
+                //         onPress={pickImageAsync}
+                //     >
+                //         <Text>Chooose</Text>
+                //     </Pressable> */}
+                //     <Pressable
+                //         onPress={() => setShowAppOptions(true)}
+                //     ><Text>Choose Image</Text></Pressable>
+                // </View>
                 <View style={styles.footerContainer}>
                     {/* <Pressable
                         onPress={pickImageAsync}

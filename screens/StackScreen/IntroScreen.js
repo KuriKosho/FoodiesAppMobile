@@ -16,20 +16,22 @@ const IntroScreen = () => {
           Foodies{'\n'}App
         </Text>
       </View>
-      <ButtonNormal
-        // action={()=>navigation.goToScreen("LoginAndRegisterScreen")}  
-        action={() => navigation.goToScreen("LoginScreen")}
-        backgroundColor={"white"}
-        textColor={"black"}
-        textBold={500}
-        height={50}
-        width={"100%"}
-        letterSpacing={0}
-        radius={16}
-        text={"Get started"}
-        textSize={16}
-        lineHeight={20}
-      />
+
+      <ButtonNormal 
+          // action={()=>navigation.goToScreen("LoginAndRegisterScreen")}  
+          action={()=>navigation.goToScreen("MainScreen")}  
+          // action={()=>navigation.goToScreen("StepScreen")}  
+          backgroundColor={"white"}
+          textColor={"black"}
+          textBold={500}
+          height={50}
+          width={"100%"}
+          letterSpacing={0}
+          radius={16}
+          text={"Get started"}
+          textSize={16}
+          lineHeight={20}
+          />
     </View>
   )
 }

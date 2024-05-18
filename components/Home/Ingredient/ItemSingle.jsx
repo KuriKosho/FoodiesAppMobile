@@ -1,9 +1,15 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
+import { useCustomNavigation } from '@/utils/method/useCustomNavigation'
+
 export default function ItemSingle({ name, image }) {
+    const navi = useCustomNavigation();
+    const handlePress = () => {
+        navi.goToScreen("Ingredient Detail");
+    }
     return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=> handlePress()}>
             <View style={styles.container}>
                 <Image source={{ uri: image }} style={styles.imgStyles} />
             </View>
