@@ -18,7 +18,7 @@ const IntroScreen = () => {
       </View>
       <ButtonNormal 
           // action={()=>navigation.goToScreen("LoginAndRegisterScreen")}  
-          action={()=>navigation.goToScreen("MainScreen")}  
+          action={()=>navigation.goToScreen("StepScreen")}  
           backgroundColor={"white"}
           textColor={"black"}
           textBold={500}
