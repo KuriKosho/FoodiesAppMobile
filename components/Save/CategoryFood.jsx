@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import ButtonCategory from '../UI/Button/ButtonCategory'
 
@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
         justifyContent: "space-between",
+        marginVertical: 20,
         // marginHorizontal: 20,
     },
     text: {

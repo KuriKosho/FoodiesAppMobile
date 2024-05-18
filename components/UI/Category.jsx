@@ -1,20 +1,16 @@
-import { StyleSheet, Text, View, Pressable } from 'react-native'
+import { StyleSheet, Text, View, Pressable, TouchableOpacity } from 'react-native'
 import React from 'react'
 
-export default function Category({ title, showAll, style }) {
+export default function Category({ title, showAll, style, onPress }) {
     return (
         <View style={styles.container}>
             <View >
                 <Text style={[styles.textStyles, style]}>{title}</Text>
             </View>
             <View >
-                <Pressable android_ripple={{ color: '#ccc' }}
-                    style={({ pressed }) => [
-                        styles.pressedContainer,
-                        { opacity: pressed ? 0.5 : 1 },
-                    ]}>
+                <TouchableOpacity onPress={onPress} >
                     <Text style={[styles.show, style]}>{showAll}</Text>
-                </Pressable>
+                </TouchableOpacity>
             </View>
         </View>
     )
@@ -25,7 +21,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: "space-between",
         marginHorizontal: 15,
-        marginVertical: 20
+        marginBottom: 10,
+        marginTop: 20
     },
     textStyles: {
         fontSize: 18,

@@ -2,9 +2,9 @@ import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-na
 import { Ionicons } from '@expo/vector-icons';
 
 import React from 'react';
-import Header from '@/components/SaveScreen/Header';
-import CategoryFood from '@/components/SaveScreen/CategoryFood';
-import ListFoodSave from '@/components/SaveScreen/ListFoodSave';
+import Header from '@/components/Save/Header';
+import CategoryFood from '@/components/Save/CategoryFood';
+import ListFoodSave from '@/components/Save/ListFoodSave';
 
 const SavedScreen = () => {
   return (

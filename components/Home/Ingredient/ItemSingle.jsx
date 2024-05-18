@@ -1,16 +1,16 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
 export default function ItemSingle({ name, image }) {
     return (
-        <View>
+        <TouchableOpacity>
             <View style={styles.container}>
                 <Image source={{ uri: image }} style={styles.imgStyles} />
             </View>
             <View >
                 <Text style={styles.textStyles}>{name}</Text>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 }
 
