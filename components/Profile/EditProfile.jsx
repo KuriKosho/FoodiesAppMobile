@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import InputBox from '../UI/input/inputBox';
 import ButtonCategory from '../UI/Button/ButtonCategory';
@@ -17,6 +18,7 @@ export default function EditProfile() {
 
     return (
         <View style={styles.container}>
+
             <InputBox value={username} setValue={setUsername} style={styles.inputStyle} label={"Username"} type={"text"} placeHolder={"account123"} />
             <InputBox value={email} setValue={setEmail} style={styles.inputStyle} label={"Email"} type={"text"} placeHolder={"email"} />
             <InputBox value={password} setValue={setPassword} style={styles.inputStyle} label={"Password"} type={"text"} placeHolder={"*****"} />
