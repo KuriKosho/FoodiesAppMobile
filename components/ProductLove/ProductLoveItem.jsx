@@ -2,12 +2,19 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 import { FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-icons';
 
 import React from 'react'
+import { useNavigation } from '@react-navigation/native';
 
-const ProductLoveItem = ({ title, vote, time, level, image }) => {
+const ProductLoveItem = ({id, title, vote, time, level, image }) => {
+    const navigation = useNavigation();
+
+    const onPressHandler = (id) => {
+        navigation.navigate("Meal Detail", { mealID: id });
+    };
+
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={()=> onPressHandler(id)}>
             <View>
-                <Image source={image} style={styles.imgStyles} />
+                <Image source={{uri: image}} style={styles.imgStyles} />
             </View>
             <View style={styles.iconContainer} >
                 <Text>{vote}</Text>
@@ -22,7 +29,7 @@ const ProductLoveItem = ({ title, vote, time, level, image }) => {
                 <View style={styles.rateContainer}>
                     <View style={styles.time}>
                         <Ionicons name="time-outline" size={18} color="black" />
-                        <Text>{time}</Text>
+                        <Text> {time} minutes</Text>
                     </View>
                     <View>
                         <Text>{level}</Text>

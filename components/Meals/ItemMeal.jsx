@@ -29,7 +29,7 @@ export default function ItemProduct({ id, title, vote, time, level, image }) {
             <View style={styles.rateContainer}>
                 <View style={styles.time}>
                     <Ionicons name="time-outline" size={18} color="black" />
-                    <Text>{time}</Text>
+                    <Text>{time} min</Text>
                 </View>
                 <View>
                     <Text>{level}</Text>

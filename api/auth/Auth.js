@@ -75,12 +75,15 @@ export const verifyAcccount = async(email, otp)=>{
     const result = await managerApi.put(API_VERIFY_URL+params)
     if (result) {
         checkVerify = result.verify; 
-        if (result.verify!=null || result.verify != undefined){
-          tokenService.setToken(result.token);
+        tokenService.setToken(result.token);
+        if (checkVerify){
+          clientService.setUserProfile(result);
+          console.log("Verify successfully");
         } else {
           Alert.alert(result.message)
         }
     }
+    
   } catch (e) {
     console.log(e);
     Alert.alert('Verify Account Failed', 'Please check your otp');
