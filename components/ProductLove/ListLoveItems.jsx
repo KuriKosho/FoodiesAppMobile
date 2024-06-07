@@ -49,12 +49,12 @@ const DUMMY_DATA = [{
     "time": "15 min",
     "level": "Easy"
 }]
-export default function ListLoveItems() {
+export default function ListLoveItems({data}) {
     return (
         <FlatList
             style={{ marginTop: 20 }}
-            data={DUMMY_DATA}
-            renderItem={({ item }) => <ProductLoveItem {...item} image={imageMap[item.image]} />}
+            data={data}
+            renderItem={({ item,index }) => <ProductLoveItem id={item.id} key={index} time={item.time} image={item.image} level={item.level} title={item.title} vote={item.vote} />}
             keyExtractor={item => item.id} >
         </FlatList>
 

@@ -10,12 +10,14 @@ import IngredientFrag from '@/components/GetStartedScreen/fragment/IngredientFra
 import RecipeFrag from '@/components/GetStartedScreen/fragment/RecipeFrag'
 import AllergiesFrag from '@/components/GetStartedScreen/fragment/AllergiesFrag'
 import managerApi from '@/api/managerApi'
+import clientService from '@/service/client.service'
 
 const StepScreen = () => {
     const [index, setIndex] = useState(0);
     const [listIngredients, setListIngredients] = useState(startUpData[0].list.map(item => ({ ...item, focus: false })));
     const [listAllergies, setLisAllergies] = useState(startUpData[1].list.map(item => ({ ...item, focus: false })));
     const [listRecipes, setListRecipes] = useState(startUpData[2].list.map(item => ({ ...item, focus: false })));
+    const [userId, setUserId] = useState(null);
     const fetchData = async () => {
         try {
             const response = await managerApi.get("/api/v2/user/question");
@@ -24,6 +26,8 @@ const StepScreen = () => {
             setListIngredients(data[0].list.map(item => ({ ...item, focus: false })));
             setLisAllergies(data[1].list.map(item => ({ ...item, focus: false })));
             setListRecipes(data[2].list.map(item => ({ ...item, focus: false })));
+            const id = await clientService.getUserProfile();
+            setUserId(id.id);
         } catch (error) {
             console.error("Fetch data failed: ", error);
         }
@@ -59,10 +63,50 @@ const StepScreen = () => {
         }));
     }
     const navi = useCustomNavigation();
+    const updateFavoriteIngredient = async () => {
+        try {
+            const favoriteIngredients = listIngredients.filter(item => item.focus === true).map(item => item.id);
+            console.log("fv ingre:" +typeof(favoriteIngredients));
+            const response = await managerApi.put("/api/v2/user/update-favorite?id="+userId, { favoriteIngredients });
+            console.log("Response: ", response);
+        } catch (error) {
+            console.error("Update favorite ingredient failed: ", error);
+        }
+    }
+    const updateFavoriteAllergies = async () => {
+        try {
+            const favoriteAllergies = listAllergies.filter(item => item.focus === true).map(item => item.id);
+            console.log("Alergiess: " +favoriteAllergies);
+            const response = await managerApi.put("/api/v2/user/update-allergies?id="+userId, { favoriteAllergies });
+            console.log("Response: ", response);
+        } catch (error) {
+            console.error("Update favorite allergies failed: ", error);
+        }
+    }
+
+    const updateFavoriteRecipes = async () => {
+        try {
+            const favoriteRecipes = listRecipes.filter(item => item.focus === true).map(item => item.id);
+            console.log("Recipes: " +favoriteRecipes);
+            const response = await managerApi.put("/api/v2/user/update-categories?id="+userId, { favoriteRecipes });
+            console.log("Response: ", response);
+        } catch (error) {
+            console.error("Update favorite recipes failed: ", error);
+        }
+    }
     const increIndex = () => {
         if (index < 2) {
             setIndex(index + 1);
         } else {
+            if (listIngredients.filter(item => item.focus === true).length != 0){
+                updateFavoriteIngredient(); 
+            }
+            if (listAllergies.filter(item => item.focus === true).length != 0){
+                updateFavoriteAllergies();
+            }
+            if (listRecipes.filter(item => item.focus === true).length != 0){
+                updateFavoriteRecipes();
+            }
             navi.goToScreenWithReplace("MainScreen");
         }
     }
