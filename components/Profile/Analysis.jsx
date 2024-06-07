@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-export default function Analysis({ followers }) {
+export default function Analysis({ numberFollowers, numberRecipes, numberLikes}) {
 
     return (
         <View style={styles.container}>
             <View style={styles.followContainer}>
-                <Text style={styles.TextNum}>24</Text>
+                <Text style={styles.TextNum}>{numberFollowers}</Text>
                 <Text style={styles.Text}>FOLLOWERS</Text>
             </View>
             <View style={styles.followContainer}>
-                <Text style={styles.TextNum}>18</Text>
+                <Text style={styles.TextNum}>{numberRecipes}</Text>
                 <Text style={styles.Text}>RECIPES</Text>
             </View>
             <View style={styles.likeContainer}>
-                <Text style={styles.TextNum}>121</Text>
+                <Text style={styles.TextNum}>{numberLikes}</Text>
                 <Text style={styles.Text}>LIKES</Text>
             </View>
         </View>

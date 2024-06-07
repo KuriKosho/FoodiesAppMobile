@@ -43,37 +43,6 @@ const DUMMY_DATA = [{
     "save": "5",
     "share": "1"
 },
-    // {
-    //     "id": "01HST7Z4GJARA8Y7AHR1MFMD81",
-    //     "avatar": "https://product.hstatic.net/200000325223/product/z2448801510183_2263357c23ba80c433204bcdc0cb2d19_056f2c250f0d4ab699b11e67dc809b48.jpg",
-    //     "name": "Jessica",
-    //     "content": "Honey pancakes with...",
-    //     "image": "pancake",
-    //     "timeOnl ": "35 min",
-    //     "like": "26",
-    //     "save": "5",
-    //     "share": "1"
-    // }, {
-    //     "id": "01HST7Z4GK5T8V9WP720WVFM2J",
-    //     "avatar": "https://product.hstatic.net/200000325223/product/z2448801510183_2263357c23ba80c433204bcdc0cb2d19_056f2c250f0d4ab699b11e67dc809b48.jpg",
-    //     "name": "Jessica",
-    //     "content": "Administrative Assistant IV",
-    //     "image": "chip",
-    //     "timeOnl ": "13 min",
-    //     "like": "26",
-    //     "save": "5",
-    //     "share": "1"
-    // }, {
-    //     "id": "01HST7Z4GMHDBAT3W2R978V5M9",
-    //     "avatar": "https://product.hstatic.net/200000325223/product/z2448801510183_2263357c23ba80c433204bcdc0cb2d19_056f2c250f0d4ab699b11e67dc809b48.jpg",
-    //     "name": "Jessica",
-    //     "content": "Pharmacist",
-    //     "image": "egg",
-    //     "timeOnl": "13 min",
-    //     "like": "26",
-    //     "save": "5",
-    //     "share": "1"
-    // }
 ]
 
 export default function Post() {

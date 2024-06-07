@@ -2,20 +2,7 @@ import { Image, StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-na
 import React, { useState } from 'react';
 import { AntDesign, EvilIcons, Ionicons } from '@expo/vector-icons';
 
-export default function ItemFoodSave({ id, image, name, weight, quantity, deleteItem }) {
-    const [numberFood, setNumberFood] = useState(quantity);
-
-    function plusHandler() {
-        setNumberFood(prev => prev + 1);
-    }
-
-    function minusHandler() {
-        if (numberFood === 0) {
-            deleteHandler();
-        } else {
-            setNumberFood(prev => prev - 1);
-        }
-    }
+export default function ItemFoodSave({ id, image, name, description, deleteItem }) {
 
 
     function deleteHandler() {
@@ -33,14 +20,14 @@ export default function ItemFoodSave({ id, image, name, weight, quantity, delete
                 </View>
                 <View style={styles.info}>
                     <Text>{name}</Text>
-                    <Text>{weight}</Text>
+                    <Text>{description}</Text>
                 </View>
             </View>
             <View style={{ alignItems: "flex-end" }}>
                 <TouchableOpacity onPress={deleteHandler}>
                     <EvilIcons name="trash" size={24} color="#EB4F30" />
                 </TouchableOpacity>
-                <View style={styles.quantityContainer}>
+                {/* <View style={styles.quantityContainer}>
                     <TouchableOpacity onPress={minusHandler}>
                         <AntDesign name="minus" size={15} color="black" />
                     </TouchableOpacity>
@@ -48,7 +35,7 @@ export default function ItemFoodSave({ id, image, name, weight, quantity, delete
                     <TouchableOpacity onPress={plusHandler}>
                         <AntDesign name="plus" size={15} color="black" />
                     </TouchableOpacity>
-                </View>
+                </View> */}
             </View>
         </View>
     );
@@ -65,6 +52,8 @@ const styles = StyleSheet.create({
     },
     containerInner: {
         flexDirection: 'row',
+        alignItems: 'center',
+        // backgroundColor: '#F68F91',
     },
     imgStyles: {
         width: 70,

@@ -9,12 +9,28 @@ import ButtonSmall from '@/components/UI/Button/ButtonSmall'
 import IngredientFrag from '@/components/GetStartedScreen/fragment/IngredientFrag'
 import RecipeFrag from '@/components/GetStartedScreen/fragment/RecipeFrag'
 import AllergiesFrag from '@/components/GetStartedScreen/fragment/AllergiesFrag'
+import managerApi from '@/api/managerApi'
 
 const StepScreen = () => {
     const [index, setIndex] = useState(0);
     const [listIngredients, setListIngredients] = useState(startUpData[0].list.map(item => ({ ...item, focus: false })));
     const [listAllergies, setLisAllergies] = useState(startUpData[1].list.map(item => ({ ...item, focus: false })));
     const [listRecipes, setListRecipes] = useState(startUpData[2].list.map(item => ({ ...item, focus: false })));
+    const fetchData = async () => {
+        try {
+            const response = await managerApi.get("/api/v2/user/question");
+            const data = response.data;
+            console.log("Data: ", data);
+            setListIngredients(data[0].list.map(item => ({ ...item, focus: false })));
+            setLisAllergies(data[1].list.map(item => ({ ...item, focus: false })));
+            setListRecipes(data[2].list.map(item => ({ ...item, focus: false })));
+        } catch (error) {
+            console.error("Fetch data failed: ", error);
+        }
+    }
+    useEffect(() => {
+        fetchData();
+    }, []);
     // Method update ingredient list
     const updateIngredientList = (id, isFocus) => {
         setListIngredients(prevList => prevList.map(item => {

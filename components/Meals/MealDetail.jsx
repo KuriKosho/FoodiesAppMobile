@@ -8,7 +8,7 @@ import YoutubePlayer from 'react-native-youtube-iframe';
 export default function MealDetail() {
     const route = useRoute();
     const { mealID } = route.params;
-    const meal = DUMMY_DATA.find(item => item.id === mealID);
+    const meal = DUMMY_DATA.find(item => item.id === "01HST7Z4GH9X0GXV7P4VG1CM3D");
 
     const title = meal.title;
     const vote = meal.vote;
