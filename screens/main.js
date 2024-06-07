@@ -134,7 +134,6 @@ const MainScreen = () => {
                     headerTitleStyle: { fontWeight: '800' },
                 })}
             />
-
         </Stack.Navigator>
     </>
     );
