@@ -15,64 +15,64 @@ import IconHead from '@/components/UI/Icon/IconHead';
 import MainProfileFrag from '@/components/ProfileScreen/fragment/MainProfileFrag';
 import SettingProfileFrag from '@/components/ProfileScreen/fragment/SettingProfileFrag';
 import { profileData } from '@/Data/ProfileData';
+import clientService from "@/service/client.service";
+import managerApi from "@/api/managerApi";
 
 
 
-
+const recipePath = "/api/v2/user/recipe?id="
 const ProfileScreen = () => {
+  const [firstName, setFirstName] = useState(null);
+  const [profileImg, setProfileImg] = useState(null);
+  const [lastName, setLastName] = useState(null);
+  const [name, setName] = useState(null);
+  const [numberFollowers, setNumberFollowers] = useState(0);
+  const [numberRecipes, setNumberRecipes] = useState(0);
+  const [numberLikes, setNumberLikes] = useState(0);
+  const [recipeData, setRecipeData] = useState([]);
+
   const navigation = useNavigation();
   const EditProfileHandler = () => {
     navigation.navigate("Edit Profile");
   }
-
+  const fetchRepice = async () => {
+    const fetchId = await clientService.getUserProfile();
+    console.log(fetchId.id +"fetchId");
+    const recipesData = await managerApi.get(recipePath + fetchId.id);
+    setRecipeData(recipesData.data);
+  }
+  const fetchProfile = async () => {
+    const profileData = await clientService.getUserProfile();
+    setFirstName(profileData.firstName);
+    setProfileImg(profileData.profileImg);
+    setLastName(profileData.lastName);
+    setName(profileData.name);
+    setNumberFollowers(profileData.numberFollowers);
+    setNumberRecipes(profileData.numberRecipes);
+    setNumberLikes(profileData.numberLikes);
+  };
+  useEffect(() => {
+    fetchRepice();
+    fetchProfile();
+  }, []);
 
   // const [main, setMain] = useState(true);
-
-  const LogOut = () => {
-    const checkLogout = logOutHandle();
-    if (checkLogout) {
-      navi.goToScreenWithReplace("Welcome")
-    }
-  }
 
 
   return (
 
-    // <Layout style={styles.container}>
-    //   <View style={styles.containerHeader}>
-    //     <Header action={() => console.log("Press handler")} bgIcon={"#E4E9F2"} title={"Account"} type={"threeline"} />
-    //     <View>
-    //       <IconHead action={() => console.log("Notification")} bgColor={"#fff"} lib={"Ionicons"} name={"notifications-outline"} />
-    //     </View>
-    //   </View>
-    //   <ScrollView style={styles.containerBody}>
-    //     {main == true ? <MainProfileFrag fullname={profileData.fullname}
-    //       numberFollower={profileData.number_follower}
-    //       numberLike={profileData.number_like}
-    //       numberRecipe={profileData.number_recipe}
-    //       recipeList={profileData.my_recipe}
-    //       avtUrl={profileData.avt_url}
-    //       username={profileData.username}
-    //     /> : <SettingProfileFrag />}
-    //   </ScrollView>
-    // </Layout>
-
-
     <View style={styles.containerbackground}>
       <ScrollView style={styles.container}  >
         <Menu />
-        <UserImage />
-        <Analysis />
+        <UserImage firstName={firstName} lastName={lastName} name={name} profileImg={profileImg} />
+        <Analysis numberFollowers={numberFollowers} numberLikes={numberLikes} numberRecipes={numberRecipes} />
         <View style={styles.buttonContainerOutter} >
           <ButtonCategory styleTouch={{ flex: 1 }} style={styles.buttonContainer} onPress={EditProfileHandler} content={"Edit Profile"} />
-          <ButtonCategory styleTouch={{ flex: 1 }} style={styles.buttonContainer} content={"My recipes"} />
+          <ButtonCategory styleTouch={{ flex: 1 }} style={styles.buttonContainer} content={"My recipes"} isFocused={true} />
         </View>
-        <Category showAll={"All"} />
         <View style={styles.meal}>
-          <ListProduct />
+          {recipeData.length!=0 ? <ListProduct recipeData={recipeData}/> : ""}
         </View>
-        <Category showAll={"All"} />
-        {/* <Post /> */}
       </ScrollView >
     </View>
   )
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   meal: {
-    marginBottom: 15
+    marginTop: 40,
   },
 
 

@@ -77,15 +77,19 @@ export const DUMMY_DATA = [{
 
 }];
 
-export default function ListMeals() {
+const ListMeals = ({recipeData}) => {
+    console.log("recipeData", recipeData)
     return (
         <FlatList
             horizontal={true}
-            data={DUMMY_DATA}
-            renderItem={({ item }) => <ItemProduct {...item} image={imageMap[item.image]} />}
+            data={recipeData}
+            // renderItem={({ item }) => <ItemProduct {...item} image={imageMap[item.image]} />}
+            renderItem={({item}) => <ItemProduct  id={item.id} image={item.image} level={item.level} time={item.time} title={item.title} vote={item.vote}/>}
             keyExtractor={item => item.id}
+            showsHorizontalScrollIndicator={false}
         />
     );
 }
+export default ListMeals;
 
 const styles = StyleSheet.create({});

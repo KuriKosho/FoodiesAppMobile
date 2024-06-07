@@ -8,7 +8,7 @@ import domtoimage from "dom-to-image";
 import * as ImagePicker from "expo-image-picker";
 
 
-export default function UserImage({ onPress }
+export default function UserImage({ onPress, profileImg, name, firstName, lastName }
 ) {
     const imageRef = useRef();
     const [status, requestPermission] = MediaLibrary.usePermissions();
@@ -95,37 +95,15 @@ export default function UserImage({ onPress }
         }
     };
 
-    // useEffect(() => {
-    //     const timeout = setTimeout(() => {
-    //         setIconVisible(true);
-    //     }, 5000); // 5 seconds
-    //     return () => clearTimeout(timeout);
-    // }, []);
-
-    // const [followers, setFollowers] = useState(24);
-
-    // const handleIconPress = () => {
-    //     setIconVisible(false);
-    //     setFollowers(prevCount => prevCount + 1);
-    // };
-
     return (
         <View style={styles.container}>
             <View style={{ position: "relative" }}>
                 <TouchableOpacity onPress={pickImageAsync}>
-                    <Image style={styles.imgStyles} source={require('@/assets/images/homepage/user.jpeg')} />
+                    <Image style={styles.imgStyles} source={{uri:profileImg}} />
                 </TouchableOpacity>
-                {/* {iconVisible && (
-                    <TouchableOpacity onPress={handleIconPress}>
-                        <Entypo style={{ position: "absolute", bottom: -4, right: 5, zIndex: 1 }} name="circle-with-plus" size={25} color="#e50000" />
-                    </TouchableOpacity>
-                )}
-                {!iconVisible && (
-                    <MaterialIcons style={{ position: "absolute", bottom: -4, right: 5, zIndex: 1 }} name="done" size={24} color="black" />
-                )} */}
             </View>
-            <Text style={styles.name}>Rose</Text>
-            <Text style={styles.address}>lasi, Romania</Text>
+            <Text style={styles.name}>{name}</Text>
+            <Text style={styles.address}>{firstName}, {lastName}</Text>
             {showAppOptions ? (
                 <View style={styles.optionsContainer}>
                     <View style={styles.optionsRow}>

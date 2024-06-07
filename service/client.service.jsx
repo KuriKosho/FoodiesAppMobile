@@ -1,8 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const setUserProfile = async () => {
+const setUserProfile = async (userProfile) => {
     try {
-      await AsyncStorage.setItem("userProfile", JSON.stringify(user));
+      await AsyncStorage.setItem("userProfile", JSON.stringify(userProfile));
     } catch (error) {
         console.log("Error:", error);
     }

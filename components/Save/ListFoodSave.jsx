@@ -11,57 +11,49 @@ export default function ListFoodSave() {
             {
                 "id": 1,
                 "name": "Avocado",
-                "weight": "500 g",
-                "quantity": 1,
+                "description": "500 g",
                 "image": "https://product.hstatic.net/200000325223/product/z2448801510183_2263357c23ba80c433204bcdc0cb2d19_056f2c250f0d4ab699b11e67dc809b48.jpg"
             },
             {
                 "id": 2,
                 "name": "Lemon",
-                "weight": " 25 g",
-                "quantity": 2,
+                "description": " 25 g",
                 "image": "https://dictionary.cambridge.org/vi/images/thumb/lemon_noun_002_20971.jpg?version=5.0.389"
             },
             {
                 "id": 3,
                 "name": "StrawBerry",
-                "weight": "150 g",
-                "quantity": 3,
+                "description": "150 g",
                 "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Garden_strawberry_%28Fragaria_×_ananassa%29_single2.jpg/1200px-Garden_strawberry_%28Fragaria_×_ananassa%29_single2.jpg"
             },
             {
                 "id": 4,
                 "name": "Dolli",
-                "weight": 47,
-                "quantity": 4,
+                "description": 47,
                 "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Garden_strawberry_%28Fragaria_×_ananassa%29_single2.jpg/1200px-Garden_strawberry_%28Fragaria_×_ananassa%29_single2.jpg"
             },
             {
                 "id": 5,
                 "name": "Alister",
-                "weight": 41,
-                "quantity": 5,
+                "description": 41,
                 "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Garden_strawberry_%28Fragaria_×_ananassa%29_single2.jpg/1200px-Garden_strawberry_%28Fragaria_×_ananassa%29_single2.jpg"
             },
             {
                 "id": 6,
                 "name": "Alister",
-                "weight": 41,
-                "quantity": 5,
+                "description": 41,
                 "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Garden_strawberry_%28Fragaria_×_ananassa%29_single2.jpg/1200px-Garden_strawberry_%28Fragaria_×_ananassa%29_single2.jpg"
             },
             {
                 "id": 7,
                 "name": "Alister",
-                "weight": 41,
-                "quantity": 5,
+                "description": 41,
                 "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Garden_strawberry_%28Fragaria_×_ananassa%29_single2.jpg/1200px-Garden_strawberry_%28Fragaria_×_ananassa%29_single2.jpg"
             },
             {
                 "id": 8,
                 "name": "Alister",
-                "weight": 41,
-                "quantity": 5,
+                "description": 41,
                 "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Garden_strawberry_%28Fragaria_×_ananassa%29_single2.jpg/1200px-Garden_strawberry_%28Fragaria_×_ananassa%29_single2.jpg"
             },
         ]);

@@ -1,3 +1,4 @@
+import clientService from "@/service/client.service";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const isLogin =  async () => {
@@ -15,6 +16,7 @@ export const isLogin =  async () => {
 export const logOutHandle = async () => {
     try{
       await AsyncStorage.removeItem("token");
+      await clientService.deleteUserProfile();
       console.log("Removed token successfully");
       return true;
     } catch(err){

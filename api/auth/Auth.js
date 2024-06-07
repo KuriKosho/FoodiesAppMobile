@@ -1,8 +1,10 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert } from "react-native";
-import { managerApi } from "../managerApi";
 import { FormatText } from "../../utils/method/formatText";
+import clientService from "@/service/client.service";
+import managerApi from "../managerApi";
+import tokenService, { setToken } from "@/service/token.service";
 
 const API_LOGIN_URL = "/api/v1/authenticate";
 const API_REGISTER_URL = "/api/v1/register";
@@ -13,23 +15,17 @@ export const LoginApi = async(username, password) => {
   try {
     console.log("Username : ", username, "-Password : ", password);
     username = FormatText(username);
-    const result = await managerApi(API_LOGIN_URL, {
-      headers: {
-        'Content-Type': "application/json"
-      },
-      method: "POST",
-      data: {
-        username,
-        password
+    const result = await managerApi.post(API_LOGIN_URL, {username,password});
+    if (result) {
+      checkLogin = result.login;
+      if (result.login){
+        const token = result.token;
+        tokenService.setToken(token);
+        clientService.setUserProfile(result);
+        console.log("Login successfully");
+      } else {
+        Alert.alert(result.message);
       }
-    })
-    if (result.status === 200) {
-      if (result.data.login===true) {
-        checkLogin = true;
-        const token = result.data.token ;
-        AsyncStorage.setItem("token", token);
-      } else 
-      Alert.alert(result.data.message);
     }
   } catch (error) {
     console.error('Login failed:', error);
@@ -47,27 +43,19 @@ export const SignUpApi = async(firstname, lastname , username,email, password) =
   email = FormatText(email);
 
   try {
-    const result = await managerApi(API_REGISTER_URL, {
-      headers: {
-        'Content-Type': "application/json"
-      },
-      method: "POST",
-      data: {
+    const result = await managerApi.post(API_REGISTER_URL, {
         firstname,
         lastname,
         email,
         username,
         password
-      }
     })
-    if (result.status === 200) {
-      if (result.data) {
-        if (result.data.register!=null || result.data.register != undefined){
-          checkSignUp = result.data.register; 
-          AsyncStorage.setItem("email",result.data.email)
-        } else {
-          Alert.alert(result.data.message)
-        }
+    if (result) {
+      checkSignUp = result.register; 
+      if (result.register) {
+          AsyncStorage.setItem("email",result.email)
+      } else {
+          Alert.alert(result.message)
       }
     }
   } catch (error) {
@@ -84,23 +72,14 @@ export const verifyAcccount = async(email, otp)=>{
   console.log("Email: ",email,"| Otp: ",otp)
   try{
     let params = "?email=" + email + "&otp=" + otp ;
-    const result = await managerApi(API_VERIFY_URL+params, {
-      headers: {
-        'Content-Type': "application/json"
-      },
-      method: "PUT"
-    })
-    if (result.status===200) {
-      if (result.data) {
-        if (result.data.verify!=null || result.data.verify != undefined){
-          console.log(result.data)
-          checkVerify = result.data.verify; 
-          const token = result.data.token ; 
-          AsyncStorage.setItem("token", token);
+    const result = await managerApi.put(API_VERIFY_URL+params)
+    if (result) {
+        checkVerify = result.verify; 
+        if (result.verify!=null || result.verify != undefined){
+          tokenService.setToken(result.token);
         } else {
-          Alert.alert(result.data.message)
+          Alert.alert(result.message)
         }
-      }
     }
   } catch (e) {
     console.log(e);

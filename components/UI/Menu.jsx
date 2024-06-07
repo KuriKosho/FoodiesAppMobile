@@ -15,18 +15,20 @@ export default function Menu() {
 
     const LogOut = () => {
         const checkLogout = logOutHandle();
+        console.log(checkLogout);
         if (checkLogout) {
-            navi.goToScreenWithReplace("Welcome")
+            navi.goToScreenWithReplace("Welcome");
         }
     }
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.containerMenu} onPress={LogOut}>
+            <TouchableOpacity style={styles.containerMenu}
+             onPress={()=> console.log("Setting")}>
                 <Ionicons name="menu" size={23} color="#fa8486" />
             </TouchableOpacity>
             <Text style={styles.textStyles}>Account</Text>
             <View>
-                <TouchableOpacity style={styles.containerMenu} onPress={NotificationHandler}>
+                <TouchableOpacity style={styles.containerMenu} onPress={()=> LogOut()}>
                     <Ionicons name="notifications-outline" size={23} color="#fa8486" />
                 </TouchableOpacity>
             </View>

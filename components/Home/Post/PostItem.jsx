@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Entypo, AntDesign, Ionicons } from '@expo/vector-icons';
-
+import { FontAwesome } from '@expo/vector-icons';
 export default function PostItem({ name, content, timeOnl, avatar, image, like, share, save }) {
     const [likesCount, setLikesCount] = useState(parseInt(like));
     const [savesCount, setSavesCount] = useState(parseInt(save));
@@ -10,13 +10,18 @@ export default function PostItem({ name, content, timeOnl, avatar, image, like, 
     const [likeColor, setLikeColor] = useState('black');
     const [saveColor, setSaveColor] = useState('black');
     const [shareColor, setShareColor] = useState('black');
-
+    const [isFollowed, setIsFollowed] = useState(false);
+    const followHandler = () => {
+        setIsFollowed(!isFollowed);
+    }
     return (
         <View style={styles.container}>
             <View style={styles.headPost}>
                 <View style={{ position: "relative" }}>
                     <Image source={{ uri: avatar }} style={styles.avatarStyles} />
-                    <Entypo style={{ position: "absolute", bottom: 0, right: -7, zIndex: 1 }} name="circle-with-plus" size={20} color="#e50000" />
+                    {isFollowed ? <FontAwesome onPress={followHandler} style={{ position: "absolute", bottom: 0, right: -7, zIndex: 1 }} name="check-circle" size={20} color="#e50000" /> : <Entypo onPress={followHandler} style={{ position: "absolute", bottom: 0, right: -7, zIndex: 1 }} name="circle-with-plus" size={20} color="#e50000" />}
+                    {/* <Entypo style={{ position: "absolute", bottom: 0, right: -7, zIndex: 1 }} name="circle-with-plus" size={20} color="#e50000" /> */}
+                    {/* <FontAwesome style={{ position: "absolute", bottom: 0, right: -7, zIndex: 1 }} name="check-circle" size={20} color="#e50000" /> */}
                 </View>
                 <View style={styles.nameTime}>
                     <Text style={styles.nameStyles}>{name}</Text>

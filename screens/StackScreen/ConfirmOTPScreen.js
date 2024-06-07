@@ -28,6 +28,7 @@ const ConfirmOTPScreen = () => {
           showToast("Register successfully !");
           navi.goToScreenWithReplace("StepScreen");
         }
+        setLoading(false);
       } catch (e) {
         Alert.alert("Error in server, please wait a few minutes !")
       }

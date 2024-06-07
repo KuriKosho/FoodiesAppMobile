@@ -26,7 +26,7 @@ const RegisterScreen = () => {
   const [loading, setLoading] = useState(false);
 
   const checkInfo = () => {
-    if (isValidPassword(password) && isValidEmail(email)){
+    if (isValidEmail(email)){
       return true;
     }
     return false;
@@ -45,6 +45,7 @@ const RegisterScreen = () => {
         setLoading(false);
         Alert.alert("Please check or fill all fields before submitting !")
       }
+      setLoading(false);
     } catch(e) {
       setLoading(false);
       console.log("Error: ",e)

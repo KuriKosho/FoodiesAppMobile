@@ -9,6 +9,7 @@ const CircleImageWithLabel = ({size, source, label,action, id, focus}) => {
     },[isFocus])
     const pressHandler =()=> {
         setFocus(!isFocus);
+        console.log(source)
     }
   return (
     <TouchableOpacity onPress={()=> pressHandler()} style={styles.container}>

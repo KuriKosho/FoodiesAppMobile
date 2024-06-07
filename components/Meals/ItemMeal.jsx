@@ -13,7 +13,8 @@ export default function ItemProduct({ id, title, vote, time, level, image }) {
     return (
         <TouchableOpacity style={styles.container} onPress={onPressHandler}>
             <View>
-                <Image source={image} style={styles.imgStyles} />
+                {/* <Image source={image} style={styles.imgStyles} /> */}
+                <Image source={{uri:image}} style={styles.imgStyles} />
             </View>
             <View style={styles.titleContainer}>
                 <Text style={styles.title} numberOfLines={1}> {title}</Text>
