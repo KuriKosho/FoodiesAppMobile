@@ -3,7 +3,7 @@ import React from 'react'
 import Layout from '@/layouts/body/Layout';
 
 const IngredientScreen = () => {
-  
+
   return (
     <Layout>
       <View style={styles.container}>

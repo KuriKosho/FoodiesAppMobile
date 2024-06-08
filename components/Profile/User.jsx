@@ -118,6 +118,7 @@ export default function UserImage({ onPress, profileImg, name, firstName, lastNa
                     </View>
                 </View>
             ) : (
+
                 // <View style={styles.footerContainer}>
                 //     {/* <Pressable
                 //         onPress={pickImageAsync}
@@ -128,7 +129,16 @@ export default function UserImage({ onPress, profileImg, name, firstName, lastNa
                 //         onPress={() => setShowAppOptions(true)}
                 //     ><Text>Choose Image</Text></Pressable>
                 // </View>
-                null
+                <View style={styles.footerContainer}>
+                    {/* <Pressable
+                        onPress={pickImageAsync}
+                    >
+                        <Text>Chooose</Text>
+                    </Pressable> */}
+                    <Pressable
+                        onPress={() => setShowAppOptions(true)}
+                    ><Text>Choo</Text></Pressable>
+                </View>
             )}
         </View>
     );

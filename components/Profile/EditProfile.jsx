@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
+
 import InputBox from '../UI/input/inputBox';
 import ButtonCategory from '../UI/Button/ButtonCategory';
 import { useNavigation } from '@react-navigation/native';
@@ -14,6 +15,7 @@ export default function EditProfile({username, email,  password, confirmPassword
     return (
 
         <View style={styles.container}>
+
             <InputBox value={username} setValue={setUsername} style={styles.inputStyle} label={"Username"} type={"text"} placeHolder={"account123"} />
             <InputBox value={email} setValue={setEmail} style={styles.inputStyle} label={"Email"} type={"text"} placeHolder={"email"} />
             <InputBox value={password} setValue={setPassword} style={styles.inputStyle} label={"Password"} type={"text"} placeHolder={"*****"} />

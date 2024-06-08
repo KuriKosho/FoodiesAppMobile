@@ -16,6 +16,7 @@ const IntroScreen = () => {
           Foodies{'\n'}App
         </Text>
       </View>
+
       <ButtonNormal 
           action={()=>navigation.goToScreen("LoginAndRegisterScreen")}  
           // action={()=>navigation.goToScreen("StepScreen")}

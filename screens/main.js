@@ -15,8 +15,10 @@ import ScreenFive from "../test/ScreenFive";
 import MealDetailScreen from "./StackScreen/subScreen/MealDetailScreen";
 import EditProfileScreen from './StackScreen/subScreen/EditProfileCreen';
 import NotificationCreen from './StackScreen/subScreen/NotificationCreen';
+
 import CreatePostScreen from './StackScreen/subScreen/CreatePostScreen';
 import IngredientScreen from './StackScreen/subScreen/IngredientScreen';
+
 
 // library, name, size, color
 const tabScreens = [
@@ -150,7 +152,6 @@ const MainScreen = () => {
                     headerTitleStyle: { fontWeight: '800' },
             })}
             />
-
         </Stack.Navigator>
     </>
     );
