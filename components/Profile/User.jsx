@@ -99,7 +99,7 @@ export default function UserImage({ onPress, profileImg, name, firstName, lastNa
         <View style={styles.container}>
             <View style={{ position: "relative" }}>
                 <TouchableOpacity onPress={pickImageAsync}>
-                    <Image style={styles.imgStyles} source={{uri:profileImg}} />
+                    {profileImg ? <Image style={styles.imgStyles} source={{uri:profileImg}} />:"" }
                 </TouchableOpacity>
             </View>
             <Text style={styles.name}>{name}</Text>

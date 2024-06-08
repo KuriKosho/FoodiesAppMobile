@@ -60,7 +60,7 @@ export default function MealDetail() {
                     <View>
                         <Text style={{ fontWeight: "600", fontSize: 14, padding: 5 }}>INGREDIENTS</Text>
                         {/* <Text style={{ padding: 5, fontWeight: meal.ingredientfontWeight, fontSize: meal.ingredientFontSize }}>{ingredient}</Text> */}
-                        { data.ingredient? data.ingredient.map((item, index) => {
+                        { data.ingredient ? data.ingredient.map((item, index) => {
                             return (
                                 <Text key={index} style={{ padding: 5, fontWeight: meal.fontWeight, fontSize: meal.fontSize }}>{item}</Text>
                             )
