@@ -1,22 +1,19 @@
-import React, { useState } from 'react';
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Image, StyleSheet, View } from 'react-native';
+
 import InputBox from '../UI/input/inputBox';
 import ButtonCategory from '../UI/Button/ButtonCategory';
 import { useNavigation } from '@react-navigation/native';
+import clientService from '@/service/client.service';
 
-export default function EditProfile() {
+export default function EditProfile({username, email,  password, confirmPassword, setUsername, setEmail,  setPassword, setConfirmPassword, saveHandle}) {
     const navigation = useNavigation();
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
-
     const onCancelPress = () => {
         navigation.goBack();
     };
 
     return (
+
         <View style={styles.container}>
 
             <InputBox value={username} setValue={setUsername} style={styles.inputStyle} label={"Username"} type={"text"} placeHolder={"account123"} />
@@ -26,9 +23,10 @@ export default function EditProfile() {
 
             <View style={styles.buttonContainerOutter} >
                 <ButtonCategory styleTouch={{ flex: 1 }} style={styles.buttonContainer} onPress={onCancelPress} content={"Cancel"} />
-                <ButtonCategory styleTouch={{ flex: 1 }} style={styles.buttonContainer} content={"Save"} />
+                <ButtonCategory styleTouch={{ flex: 1 }} style={styles.buttonContainer} content={"Save"} onPress={saveHandle} />
             </View>
         </View>
+
     );
 }
 

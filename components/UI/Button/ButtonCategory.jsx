@@ -20,7 +20,7 @@ export default function ButtonCategory({ content, style, textStyle, styleTouch, 
             onPressOut={handlePressOut} // Handle press out event
         >
             <View style={[styles.buttonContainer, { padding: 15 }, style]}>
-                <Text style={[textStyle, isFocused ? {color:  "#000" }: {color: "#636363"}]}>{content}</Text>
+                <Text style={[textStyle, isFocused ? {color:  "#000000" }: {color: " #000"}]}>{content}</Text>
             </View>
         </TouchableOpacity>
     );

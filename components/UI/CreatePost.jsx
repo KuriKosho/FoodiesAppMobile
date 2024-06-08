@@ -8,13 +8,8 @@ const CreatePost = () => {
     const [img, setImg] = useState(null);
     useEffect(() => {
         const fetchImg = async () => {
-            const img = await clientService.getUserProfile().img;
-            if (img) {
-                // setImg(img);
-                setImg("https://product.hstatic.net/200000325223/product/z2448801510183_2263357c23ba80c433204bcdc0cb2d19_056f2c250f0d4ab699b11e67dc809b48.jpg");
-            } else {
-                setImg("https://product.hstatic.net/200000325223/product/z2448801510183_2263357c23ba80c433204bcdc0cb2d19_056f2c250f0d4ab699b11e67dc809b48.jpg");
-            }
+            const img = await clientService.getUserProfile();
+            setImg(img.profileImg);
         };
         fetchImg();
     }, [])

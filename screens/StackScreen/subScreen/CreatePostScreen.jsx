@@ -6,6 +6,7 @@ import DynamicIcon from '@/components/UI/Icon/DynamicIcon';
 import ButtonSmall from '@/components/UI/Button/ButtonSmall';
 import Slider from '@react-native-community/slider';
 import ButtonSelect from '@/components/UI/Button/ButtonSelect';
+import managerApi from '@/api/managerApi';
 
 const categories = [
     { id: 1, name: 'Breakfast' },
@@ -26,12 +27,17 @@ const ingredients = [
     { id: 7, name: 'Carrot' },
     { id: 8, name: 'Cabbage' },
     { id: 9, name: 'Tomato' },
+    { id: 10, name: 'Chicken' },
+    { id: 11, name: 'Pork' },
+    { id: 12, name: 'Beef' },
+    { id: 13, name: 'Fish' },
 ]
 
 const CreatePostScreen = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [modalIngredientVisible, setModalIngredientVisible] = useState(false);
-
+    const [categories, setCategories] = useState([]);
+    const [ingredients, setIngredients] = useState([]);
     const navi = useCustomNavigation();
     const [img, setImg] = useState(null);
     const [name, setName] = useState(null);
@@ -41,20 +47,35 @@ const CreatePostScreen = () => {
     const [level, setLevel] = useState('Easy');
     const [listCategories, setListCategories] = useState([]);
     const [listIngredients, setListIngredients] = useState([]);
+    const addPostHander = () => {
+        console.log("Add Post");
+    }
     useEffect(() => {
         const fetchProfile = async () => {
             const profile = await clientService.getUserProfile();
             if (profile) {
-                // setName(profile.name);
-                // setImg(profile.img);
-                setName("Jessica")
-                setImg("https://product.hstatic.net/200000325223/product/z2448801510183_2263357c23ba80c433204bcdc0cb2d19_056f2c250f0d4ab699b11e67dc809b48.jpg");
+                setName(profile.name)
+                setImg(profile.profileImg);
             } else {
                 setName("Jessica")
                 setImg("https://product.hstatic.net/200000325223/product/z2448801510183_2263357c23ba80c433204bcdc0cb2d19_056f2c250f0d4ab699b11e67dc809b48.jpg");
             }
         };
+        const fetchIngredients = async () => {
+          const res = await managerApi.get("/api/v2/food/ingredients");
+          if (res) {
+            setIngredients(res.data);
+          }
+        }
+        const fetchCategories = async () => {
+          const res = await managerApi.get("/api/v2/food/categories");
+          if (res) {
+            setCategories(res.data);
+          }
+        }
         fetchProfile();
+        fetchIngredients();
+        fetchCategories();
     }, [])
     const selectImageHandler = async () => {
         console.log("Select Image");
@@ -98,7 +119,7 @@ const CreatePostScreen = () => {
           Alert.alert('Modal has been closed.');
           setModalIngredientVisible(!modalIngredientVisible);
         }}>
-        <View style={styles.centeredView}>
+        <View style={styles.centeredViewFix}>
           <View style={styles.modalView}>
             <View style={styles.headerModel}>
                 <View>
@@ -108,7 +129,7 @@ const CreatePostScreen = () => {
                     <DynamicIcon  name={"close"} size={25} color={"#000000"} library={"AntDesign"}/>
                 </Pressable>
             </View>
-            <View>
+            <ScrollView scrollEnabled>
                 {ingredients.map((ingredient,index) => {
                   if (listIngredients.includes(ingredient)) {
                     return (
@@ -121,7 +142,7 @@ const CreatePostScreen = () => {
                   }
                 }
                 )}
-                </View>
+                </ScrollView>
             <Pressable style={[styles.button, styles.buttonClose]} onPress={() => addIngredientsHandler()}>
               <Text style={styles.textStyle}>Add</Text>
             </Pressable>
@@ -138,7 +159,7 @@ const CreatePostScreen = () => {
           Alert.alert('Modal has been closed.');
           setModalVisible(!modalVisible);
         }}>
-        <View style={styles.centeredView}>
+        <View style={styles.centeredViewFix}>
           <View style={styles.modalView}>
             <View style={styles.headerModel}>
                 <View>
@@ -148,7 +169,7 @@ const CreatePostScreen = () => {
                     <DynamicIcon  name={"close"} size={25} color={"#000000"} library={"AntDesign"}/>
                 </Pressable>
             </View>
-            <View>
+            <ScrollView scrollEnabled>
                 {categories.map((category,index) => {
                   if (listCategories.includes(category)) {
                     return (
@@ -161,7 +182,7 @@ const CreatePostScreen = () => {
                   }
                 }
                 )}
-            </View>
+            </ScrollView>
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => addCategoriesHandler()}>
@@ -273,7 +294,7 @@ const CreatePostScreen = () => {
         </View>
 
         <View style={styles.footerContainer}>
-            <ButtonSmall boder={false} text={"Post"}  />
+            <ButtonSmall boder={false} text={"Post"} action={addPostHander}  />
         </View>
         <View>
 
@@ -419,7 +440,13 @@ const styles = StyleSheet.create({
       },
       centeredView: {
         flex: 1,
+        height: "100%",
         justifyContent: 'center',
+        display: "flex",
+        alignItems: 'center',
+      },
+      centeredViewFix: {
+        maxHeight: "80%",
       },
       modalView: {
         margin: 20,

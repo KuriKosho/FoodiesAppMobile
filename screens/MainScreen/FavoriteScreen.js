@@ -29,7 +29,7 @@ const FavoriteScreen = () => {
     <View style={styles.container}>
       <Category title={"Favorite recipes"} onPress={onPressHandler} style={styles.title} />
       <SearchTool />
-      <ListLoveItems data={recipeData} />
+      {recipeData.length!=0 ? <ListLoveItems data={recipeData} />: <Text>There is no favorite recipe</Text>}
     </View>
 
   )

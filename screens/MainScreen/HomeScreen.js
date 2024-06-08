@@ -14,14 +14,27 @@ import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-cont
 import CreatePost from '@/components/UI/CreatePost';
 import { useNavigation } from '@react-navigation/native';
 import clientService from '@/service/client.service';
+import managerApi from '@/api/managerApi';
 
-
+const trendingPath = "/api/v2/food/trending";
 function SafeArea() {
   const insets = useSafeAreaInsets();
   const paddingTop = Math.max(insets.top, 40);
   const [profile, setProfile] = React.useState(null);
   const [firstName, setFirstName] = React.useState(null);
   const [profileImg, setProfileImg] = React.useState(null);
+  const [recipeData, setRecipeData] = React.useState(null);
+  useEffect(() => {
+    const fetchRecipeData = async () => {
+      try {
+        const response = await managerApi.get(trendingPath);
+        setRecipeData(response.data);
+      } catch (error) {
+        console.error("Fetch data failed: ", error);
+      }
+    }
+    fetchRecipeData();
+  },[])
   useEffect(() => {
     const fetchProfile = async () => {
       const profile = await clientService.getUserProfile();
@@ -37,7 +50,7 @@ function SafeArea() {
     // { key: 'SearchTool', component: <SearchTool /> },
     { key: 'CreatePost', component: <CreatePost />},
     { key: 'Trending', component: <Trending /> },
-    { key: 'ListProduct', component: <ListProduct /> },
+    { key: 'ListProduct', component: <ListProduct recipeData={recipeData}/> },
     // { key: 'Ingredients', component: <Ingredients title='Your Ingredients' showAll={'See all'} /> },
     // { key: 'ListItemSingle', component: <ListItemSingle /> },
     { key: 'Post', component: <Post /> },
