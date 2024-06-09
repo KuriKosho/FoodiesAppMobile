@@ -6,7 +6,7 @@ export default function Trending({ all }) {
     return (
         <View style={styles.container}>
             <View >
-                <Text style={styles.textStyles}>#Trending</Text>
+                <Text style={styles.textStyles}>Trending</Text>
             </View>
             <View >
                 <Pressable android_ripple={{ color: '#ccc' }}
@@ -14,7 +14,7 @@ export default function Trending({ all }) {
                         styles.pressedContainer,
                         { opacity: pressed ? 0.5 : 1 },
                     ]}>
-                    <Text style={styles.show}>See all</Text>
+                    <Text style={styles.show}></Text>
                 </Pressable>
             </View>
         </View>
@@ -23,14 +23,13 @@ export default function Trending({ all }) {
 
 const styles = StyleSheet.create({
     container: {
-
-        margin: 20,
+        margin: 15,
         flexDirection: 'row',
         justifyContent: "space-between"
     },
     textStyles: {
-        fontSize: 20,
-        fontWeight: "500"
+        fontSize: 18,
+        fontWeight: '700',
     }, show: {
         fontSize: 18,
         fontWeight: '700',

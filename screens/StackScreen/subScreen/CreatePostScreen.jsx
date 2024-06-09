@@ -7,6 +7,7 @@ import ButtonSmall from '@/components/UI/Button/ButtonSmall';
 import Slider from '@react-native-community/slider';
 import ButtonSelect from '@/components/UI/Button/ButtonSelect';
 import managerApi from '@/api/managerApi';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const categories = [
     { id: 1, name: 'Breakfast' },
@@ -47,9 +48,7 @@ const CreatePostScreen = () => {
     const [level, setLevel] = useState('Easy');
     const [listCategories, setListCategories] = useState([]);
     const [listIngredients, setListIngredients] = useState([]);
-    const addPostHander = () => {
-        console.log("Add Post");
-    }
+
     useEffect(() => {
         const fetchProfile = async () => {
             const profile = await clientService.getUserProfile();
@@ -76,6 +75,7 @@ const CreatePostScreen = () => {
         fetchProfile();
         fetchIngredients();
         fetchCategories();
+        console.disableYellowBox = true;
     }, [])
     const selectImageHandler = async () => {
         console.log("Select Image");
@@ -107,6 +107,34 @@ const CreatePostScreen = () => {
         console.log("Send ingredients to server");
         console.log(listIngredients);
         setModalIngredientVisible(!modalIngredientVisible);
+    }
+    const createPostHandler = async () => {
+      if (title === "" || description === "" || listCategories.length === 0 || listIngredients.length === 0) {
+        Alert.alert("Please fill all information");
+        return;
+      }
+      const id = await clientService.getUserProfile();
+      const data = {
+        authorId: id.id,
+        title: title,
+        description: description,
+        video: "https://www.youtube.com/watch?v=Wc_F_BesIT0",
+        image: "https://plus.unsplash.com/premium_photo-1683121324230-2702ea6b47be?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        time: time,
+        level: level,
+        categories: listCategories,
+        ingredients: listIngredients,
+      }
+      const res = await managerApi.post("/api/v2/user/create-post", data);
+      if (res) {
+        Alert.alert("Create post success");
+        // await clientService.setPost(res.data);
+        navi.goToScreen("HomeScreen");
+
+      } else {
+        Alert.alert("Create post failed");
+      }
+
     }
   return (
     <>
@@ -294,7 +322,7 @@ const CreatePostScreen = () => {
         </View>
 
         <View style={styles.footerContainer}>
-            <ButtonSmall boder={false} text={"Post"} action={addPostHander}  />
+            <ButtonSmall boder={false} text={"Post"} action={createPostHandler}  />
         </View>
         <View>
 

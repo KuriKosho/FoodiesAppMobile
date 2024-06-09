@@ -17,6 +17,7 @@ export const logOutHandle = async () => {
     try{
       await AsyncStorage.removeItem("token");
       await clientService.deleteUserProfile();
+      await clientService.deletePost();
       console.log("Removed token successfully");
       return true;
     } catch(err){

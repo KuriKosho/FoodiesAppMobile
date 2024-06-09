@@ -1,22 +1,20 @@
 import { StyleSheet, View, FlatList } from 'react-native';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useCustomNavigation } from '../../utils/method/useCustomNavigation'
 import Layout from "../../layouts/body/Layout"
 import HeaderUser from '@/components/Home/HeaderUser';
-import SearchTool from '@/components/UI/SearchTool';
 import Trending from '@/components/Home/Trending';
 import ListProduct from '@/components/Meals/ListMeals';
-import Ingredients from '@/components/UI/Category';
-import ListItemSingle from '@/components/Home/Ingredient/ListItemSingle';
 import Banner from '@/components/Home/Banner';
 import Post from '@/components/Home/Post/Post';
-import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
+import {  useSafeAreaInsets } from 'react-native-safe-area-context';
 import CreatePost from '@/components/UI/CreatePost';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import clientService from '@/service/client.service';
 import managerApi from '@/api/managerApi';
 
 const trendingPath = "/api/v2/food/trending";
+const foodsPath = "/api/v2/food/posts";
 function SafeArea() {
   const insets = useSafeAreaInsets();
   const paddingTop = Math.max(insets.top, 40);
@@ -24,6 +22,10 @@ function SafeArea() {
   const [firstName, setFirstName] = React.useState(null);
   const [profileImg, setProfileImg] = React.useState(null);
   const [recipeData, setRecipeData] = React.useState(null);
+  const [foodsData, setFoodsData] = React.useState(null);
+
+  // Post
+
   useEffect(() => {
     const fetchRecipeData = async () => {
       try {
@@ -44,16 +46,31 @@ function SafeArea() {
     };
     fetchProfile();
   }, []);
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    const fetchFoodsData = async () => {
+      try {
+          const response = await managerApi.get(foodsPath);
+          setFoodsData(response.data);
+      } catch (error) {
+          console.error("Fetch data failed: ", error);
+      }
+  }
+    const interval = setInterval(() => {
+      // console.log('This will run every 4 seconds');
+      fetchFoodsData();
+      setCount(prevCount => prevCount + 1);
+    }, 8000);
+
+    return () => clearInterval(interval);
+  }, []);
   const components = [
     { key: 'HeaderUser', component: <HeaderUser nameUser={`Hi, ${firstName || "Jessica"}`} profileImg={profileImg} /> },
     { key: 'Banner', component: <Banner /> },
-    // { key: 'SearchTool', component: <SearchTool /> },
-    { key: 'CreatePost', component: <CreatePost />},
+    { key: 'CreatePost', component: <CreatePost/>},
     { key: 'Trending', component: <Trending /> },
     { key: 'ListProduct', component: <ListProduct recipeData={recipeData}/> },
-    // { key: 'Ingredients', component: <Ingredients title='Your Ingredients' showAll={'See all'} /> },
-    // { key: 'ListItemSingle', component: <ListItemSingle /> },
-    { key: 'Post', component: <Post /> },
+    { key: 'Post', component: <Post data={foodsData} /> },
   ];
 
   const renderItem = ({ item }) => <View>{item.component}</View>;

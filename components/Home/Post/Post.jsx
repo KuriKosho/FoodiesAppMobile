@@ -1,7 +1,10 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Category from '../../UI/Category'
 import PostItem from './PostItem';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import clientService from '@/service/client.service';
+import managerApi from '@/api/managerApi';
 
 
 const imageMap = {
@@ -44,19 +47,45 @@ const DUMMY_DATA = [{
     "share": "1"
 },
 ]
-
-export default function Post() {
+export default function Post({data}) {
+    const [newPost, setNewPost] = useState(null);
     return (
         <View>
             <Category title={"Posts"} />
             <FlatList
-                data={DUMMY_DATA}
+                data={data || DUMMY_DATA}
+                // renderItem={({ item }) => (
+                //     <PostItem
+                //         authorId={item.authorId}
+                //         authorName={item.authorName}
+                //         avatar={item.avatar}
+                //         content={item.content}
+                //         timeOnl={item.timeOnl}
+                //         like={item.like}
+                //         save={item.save}
+                //         share={item.share}
+                //         id={item.id}
+                //         image={item.image}
+                //         key={item.id}
+                //         name={item.name}
+                //         title={item.title}
+                //     />
+                // )}
                 renderItem={({ item }) => (
-                    <PostItem
-                        {...item}
-
-                        image={imageMap[item.image]}
-                    />
+                    <PostItem 
+                        authorId={item.authorId}
+                        avatar={item.avatar}
+                        content={item.content}
+                        timeOnl={item.timeOnl}
+                        like={item.like}
+                        save={item.save}
+                        share={item.share}
+                        id={item.id}
+                        image={item.image}
+                        key={item.id}
+                        name={item.name}
+                        title={item.title}
+                        />
                 )}
                 keyExtractor={item => item.id}
             />

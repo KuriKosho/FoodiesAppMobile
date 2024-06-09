@@ -29,7 +29,8 @@ export default function Menu() {
             <Text style={styles.textStyles}>Account</Text>
             <View>
                 <TouchableOpacity style={styles.containerMenu} onPress={()=> LogOut()}>
-                    <Ionicons name="notifications-outline" size={23} color="#fa8486" />
+                    {/* <Ionicons name="notifications-outline" size={23} color="#fa8486" /> */}
+                    <Ionicons name="log-out-outline" size={23} color="#fa8486" />
                 </TouchableOpacity>
             </View>
         </View>
