@@ -8,6 +8,9 @@ export function useCustomNavigation() {
     const goToScreenWithReplace = (name) => {
       navigation.replace(name)
     }
-    return {goToScreen, goToScreenWithReplace}    
+    const goToScreenWithParams = (name, params) => {
+      navigation.navigate(name, params)
+    }
+    return {goToScreen, goToScreenWithReplace, goToScreenWithParams}    
 }
 

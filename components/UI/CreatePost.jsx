@@ -19,10 +19,10 @@ const CreatePost = () => {
   return (
     <View style={styles.container}>
       <View>
-        <Image source={{ uri: img }} style={{ width: 50, height: 50, borderRadius: 25 }} />
+        <Image source={{ uri: img }} style={{ width: 50, height: 50, borderRadius: 25, borderWidth:1, borderColor:"#ffffff" }} />
       </View>
       <Pressable style={styles.postContainer} onPress={()=>handleShowPost() } >
-        <Text style={{ fontSize: 16, fontWeight: "400" }}> Bạn đang nghĩ gì ?</Text>
+        <Text style={{ fontSize: 16, fontWeight: "400" }}> How are you ?</Text>
       </Pressable>
     </View>
   )
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         marginTop: 15,
         borderRadius: 15,
-        columnGap: 10
+        columnGap: 10,
     },
     postContainer: {
         display: "flex",
@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         borderWidth: 1,
         borderColor: "#676767",
+        backgroundColor: "#ffffff",
         flex: 1,
         height: 50
     },

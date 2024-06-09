@@ -23,4 +23,28 @@ const deleteUserProfile = async () => {
         console.log("Error:", error);
     }
 }
-export default {setUserProfile, getUserProfile, deleteUserProfile}
+const setPost = async (post) => {
+    try {
+        await AsyncStorage.setItem("post", JSON.stringify(post));
+    } catch (error) {
+        console.log("Error:", error);
+    }
+}
+const deletePost = async () => {
+    try {
+        await AsyncStorage.removeItem("post");
+    } catch (error) {
+        console.log("Error:", error);
+    }
+}
+const getPost = async () => {
+    try {
+        const post = await AsyncStorage.getItem("post");
+        return JSON.parse(post ?? {});
+    } catch (error) {
+        console.log("Error:", error);
+        return null;
+    }
+
+}
+export default {setUserProfile, getUserProfile, deleteUserProfile, deletePost, getPost, setPost}

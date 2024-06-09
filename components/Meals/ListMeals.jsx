@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 import ItemProduct from './ItemMeal';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const imageMap = {
     pancake: require('@/assets/images/homepage/pancake.jpeg'),
@@ -77,17 +78,20 @@ export const DUMMY_DATA = [{
 
 }];
 
-const ListMeals = ({recipeData}) => {
-    console.log("recipeData", recipeData)
+const ListMeals =  ({recipeData}) => {
+ 
     return (
-        <FlatList
-            horizontal={true}
-            data={recipeData}
-            // renderItem={({ item }) => <ItemProduct {...item} image={imageMap[item.image]} />}
-            renderItem={({item}) => <ItemProduct  id={item.id} image={item.image} level={item.level} time={item.time} title={item.title} vote={item.vote}/>}
-            keyExtractor={item => item.id}
-            showsHorizontalScrollIndicator={false}
-        />
+        <>
+            <FlatList
+                horizontal={true}
+                data={recipeData}
+                // renderItem={({ item }) => <ItemProduct {...item} image={imageMap[item.image]} />}
+                renderItem={({item}) => <ItemProduct  id={item.id} image={item.image} level={item.level} time={item.time} title={item.title} vote={item.vote}/>}
+                keyExtractor={item => item.id}
+                showsHorizontalScrollIndicator={false}
+            />
+        </>
+
     );
 }
 export default ListMeals;

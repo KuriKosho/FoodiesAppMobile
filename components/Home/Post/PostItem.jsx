@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Entypo, AntDesign, Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
-export default function PostItem({ name, content, timeOnl, avatar, image, like, share, save }) {
-    const [likesCount, setLikesCount] = useState(parseInt(like));
-    const [savesCount, setSavesCount] = useState(parseInt(save));
-    const [sharesCount, setSharesCount] = useState(parseInt(share));
+export default function PostItem({ name, content, timeOnl, avatar,title, image, like, share, save, authorId }) {
+    const [likesCount, setLikesCount] = useState(like);
+    const [savesCount, setSavesCount] = useState(save);
+    const [sharesCount, setSharesCount] = useState(share);
 
     const [likeColor, setLikeColor] = useState('black');
     const [saveColor, setSaveColor] = useState('black');
@@ -20,8 +20,6 @@ export default function PostItem({ name, content, timeOnl, avatar, image, like, 
                 <View style={{ position: "relative" }}>
                     <Image source={{ uri: avatar }} style={styles.avatarStyles} />
                     {isFollowed ? <FontAwesome onPress={followHandler} style={{ position: "absolute", bottom: 0, right: -7, zIndex: 1 }} name="check-circle" size={20} color="#e50000" /> : <Entypo onPress={followHandler} style={{ position: "absolute", bottom: 0, right: -7, zIndex: 1 }} name="circle-with-plus" size={20} color="#e50000" />}
-                    {/* <Entypo style={{ position: "absolute", bottom: 0, right: -7, zIndex: 1 }} name="circle-with-plus" size={20} color="#e50000" /> */}
-                    {/* <FontAwesome style={{ position: "absolute", bottom: 0, right: -7, zIndex: 1 }} name="check-circle" size={20} color="#e50000" /> */}
                 </View>
                 <View style={styles.nameTime}>
                     <Text style={styles.nameStyles}>{name}</Text>
@@ -32,7 +30,7 @@ export default function PostItem({ name, content, timeOnl, avatar, image, like, 
                 <Text style={styles.contentStyles}>{content}</Text>
             </View>
             <View style={styles.imgContainer}>
-                <Image source={image} style={styles.imgStyles} />
+                <Image source={{uri:image}} style={styles.imgStyles} />
             </View>
             <View style={styles.interactContainer}>
                 <TouchableOpacity onPress={() => {
@@ -71,11 +69,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 10,
-        marginHorizontal: 20,
-        backgroundColor: '#E4E9F2',
+        // marginHorizontal: 20,
+        backgroundColor: '#ffffff',
         borderRadius: 10,
         overflow: 'hidden',
-        margin: 5,
+        marginVertical: 3,
     },
     headPost: {
         flexDirection: 'row',
